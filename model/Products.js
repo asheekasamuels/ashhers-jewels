@@ -5,7 +5,7 @@ class Products {
         try {
             const strQry = `
             SELECT prodID, prodName,quantity, category, prodDesc, prodUrl, amount
-            FROM Products;
+            FROM products;
             `
             db.query(strQry, (err, results) => {
                 if (err) throw new Error('Unable to fetch all products')
@@ -26,7 +26,7 @@ class Products {
         try {
             const strQry = `
             SELECT prodID, prodName,quantity, category, prodDesc, prodUrl, amount
-            FROM Products
+            FROM products
             ORDER BY prodID DESC
             LIMIT 5;
             `
@@ -49,7 +49,7 @@ class Products {
         try {
             const strQry = `
             SELECT prodID, prodName,quantity, category, prodDesc, prodUrl, amount
-            FROM Products
+            FROM products
             WHERE prodID = ${req.params.id};
             `
             db.query(strQry, (err, result) => { 
@@ -70,7 +70,7 @@ class Products {
     addProduct(req, res) { 
         try {
             const strQry = `
-            INSERT INTO Products
+            INSERT INTO products
             SET ?
             `
             db.query(strQry, [req.body], (err) => { 
@@ -91,7 +91,7 @@ class Products {
     updateProduct(req, res) { 
         try {
             const strQry = `
-            UPDATE Products
+            UPDATE products
             SET ?
             WHERE prodID = ${req.params.id};
             `
@@ -113,7 +113,7 @@ class Products {
     deleteProduct(req, res) { 
         try {
             const strQry = `
-            DELETE FROM Products
+            DELETE FROM products
             WHERE prodID = ${req.params.id};
             `
             db.query(strQry, (err) => { 

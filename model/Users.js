@@ -6,11 +6,11 @@ class Users {
     fetchUsers(req, res) {
         try {
             const strQry = `
-        SELECT userID, firstName, lastName, userAge, gender,userRole, emailAdd, userPass, userProfile
-        FROM Users;
+        SELECT *
+        FROM users;
         `
             db.query(strQry, (err, results) => {
-                if (err) throw new Error('Issue when retrieving all users.')
+                if (err) throw new Error(err)
                 res.json({
                     status: res.statusCode,
                     results
@@ -26,8 +26,8 @@ class Users {
     fetchUser(req, res) {
         try {
             const strQry = `
-        SELECT userID, firstName, lastName, userAge, gender,userRole, emailAdd, userPass, userProfile
-        FROM Users
+        SELECT *
+        FROM users
         WHERE userID = ${req.params.id};
         `
             db.query(strQry, (err, result) => {
@@ -54,7 +54,7 @@ class Users {
                 userPass: data.userPass
             }
             let strQry = `
-        INSERT INTO Users
+        INSERT INTO users
         SET ?;
         `
             db.query(strQry, [data], (err) => {
@@ -85,7 +85,7 @@ class Users {
                 data.userPass = await hash(data.userPass, 12)
             }
             const strQry = `
-        UPDATE Users
+        UPDATE users
         SET ?
         WHERE userID = ${req.params.id}
         `
@@ -107,7 +107,7 @@ class Users {
     deleteUser(req, res) {
         try {
             const strQry = `
-        DELETE FROM Users
+        DELETE FROM users
         WHERE userID = ${req.params.id};
         `
             db.query(strQry, (err) => {
@@ -128,8 +128,8 @@ class Users {
         try {
             const { emailAdd, userPass } = req.body
             const strQry = `
-        SELECT userID, firstName, lastName, userAge, gender,userRole, emailAdd, userPass, userProfile
-        FROM Users
+        SELECT *
+        FROM users
         WHERE emailAdd = '${emailAdd}';
         `
             db.query(strQry, async (err, result) => {
