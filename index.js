@@ -18,9 +18,6 @@ app.use((req, res, next) => {
 
     next()
 })
-app.use('/users', userRouter)
-app.use('/products', productRouter)
-app.use('/carts', cartRouter)
 app.use(
     express.static('./static'),
     express.json(),
@@ -29,6 +26,9 @@ app.use(
     }),
     cors()
 )
+app.use('/users', userRouter)
+app.use('/products', productRouter)
+app.use('/carts', cartRouter)
 
 app.get('^/$|/eShop', (req, res) => {
     res.status(200).sendFile(path.resolve('./static/html/index.html'))
