@@ -1,11 +1,11 @@
 import { connection as db } from '../config/index.js'
 
 class Products {
-    
+
     fetchProducts(req, res) {
         try {
             const strQry = `
-            SELECT prodID, prodName,quantity, category, prodDesc, prodUrl, amount
+            SELECT *
             FROM products;
             `
             db.query(strQry, (err, results) => {
