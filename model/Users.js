@@ -3,6 +3,7 @@ import { createToken } from '../middleware/AuthenticateUser.js'
 import { compare, hash } from 'bcrypt'
 
 class Users {
+    
     fetchUsers(req, res) {
         try {
             const strQry = `
