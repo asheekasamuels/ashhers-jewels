@@ -1,6 +1,7 @@
 import { connection as db } from '../config/index.js'
 
 class Products {
+    
     fetchProducts(req, res) {
         try {
             const strQry = `
@@ -8,7 +9,7 @@ class Products {
             FROM products;
             `
             db.query(strQry, (err, results) => {
-                if (err) throw new Error('Unable to fetch all products')
+                if (err) throw new Error(err)
                 res.json({
                     status: res.statusCode,
                     results
