@@ -6,9 +6,9 @@ class Users {
     fetchUsers(req, res) {
         try {
             const strQry = `
-        SELECT *
-        FROM users;
-        `
+                            SELECT *
+                            FROM users;
+                            `
             db.query(strQry, (err, results) => {
                 if (err) throw new Error(err)
                 res.json({
