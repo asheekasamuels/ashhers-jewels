@@ -3,7 +3,6 @@ import { createToken } from '../middleware/AuthenticateUser.js'
 import { compare, hash } from 'bcrypt'
 
 class Users {
-    
     fetchUsers(req, res) {
         try {
             const strQry = `
@@ -11,11 +10,18 @@ class Users {
                             FROM users;
                             `
             db.query(strQry, (err, results) => {
-                if (err) throw new Error(err.message)
-                res.json({
-                    status: res.statusCode,
-                    results
-                })
+                if (err) {
+                    res.json({
+                        status: 404,
+                        err
+                    })
+                }else{
+
+                    res.json({
+                        status: res.statusCode,
+                        results
+                    })
+                }
             })
         } catch (e) {
             res.json({
