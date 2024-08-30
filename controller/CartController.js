@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { cart } from '../model/cart.js'
+import { cart } from '../model/index.js'
 import { verifyAToken } from '../middleware/AuthenticateUser.js'
 
 const cartRouter = express.Router()
