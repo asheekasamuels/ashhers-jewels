@@ -3,7 +3,7 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
-        <h1>Welcome to [Your Jewelry Brand]</h1>
+        <h1>Welcome to Ashhers Jewels</h1>
         <p>Discover our latest collections and find the perfect piece that tells your unique story.</p>
         <a href="/products" class="cta-button">Shop Now</a>
       </div>
@@ -77,7 +77,7 @@ export default {
 .hero {
   background: url('') no-repeat center center/cover;
   padding: 80px 20px;
-  color: #fff;
+  color: black;
   text-align: center;
 }
 
@@ -89,7 +89,7 @@ export default {
 .hero h1 {
   font-size: 3em;
   margin-bottom: 10px;
-  color: #fff;
+  color: black;
 }
 
 .hero p {
