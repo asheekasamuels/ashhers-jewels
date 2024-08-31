@@ -67,7 +67,7 @@ export default {
 
 <style scoped>
 .home {
-  font-family: 'Arial', sans-serif;
+  font-family: "Georgia", serif;
   color: #333;
   margin: 0;
   padding: 0;
