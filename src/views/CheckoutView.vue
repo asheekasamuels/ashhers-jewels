@@ -23,7 +23,7 @@
   
   <style scoped>
   .checkout-page {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
     font-family: Arial, sans-serif;

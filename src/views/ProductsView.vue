@@ -1,128 +1,164 @@
 <template>
-  <div class="products">
-      <h1>Products</h1>
+  <div class="products-page">
+    <div class="products-banner">
+      <h1>Our Products</h1>
+      <p>Discover our collection of beautiful jewelry.</p>
+    </div>
     <div class="container">
-      
-      <div class="options row mb-4">
-        <div class="col-md-6">
-          <div class="search">
-            <input type="text" v-model="searchQuery" class="form-control search-input" placeholder="Search" />
+      <div class="options">
+        <div class="search-container">
+          <input 
+            type="text" 
+            v-model="searchQuery" 
+            class="search-input" 
+            placeholder="Search" 
+          />
+          <div class="sort-buttons">
+            <button @click="sortByPrice" class="sort-btn">Sort by Price</button>
+            <button @click="sortByName" class="sort-btn">Sort by Name</button>
           </div>
         </div>
-        <div class="col-md-6 text-md-right">
-          <button @click="sortByPrice" class="sort-btn">Sort by Price</button>
-          <button @click="sortByName" class="sort-btn">Sort by Name</button>
-        </div>
       </div>
-      <div class="row gap-2 justify-content-center my-2" v-if="filteredProducts.length">
-        <Card v-for="product in filteredProducts" v-bind:key="product.prodID" class="product-card">
+      <div class="products-grid" v-if="filteredProducts.length && !loading">
+        <Card 
+          v-for="product in filteredProducts" 
+          :key="product.prodID" 
+          class="product-card"
+        >
           <template #cardHeader>
-            <img :src="product.prodURL" loading="lazy" class="img-fluid product-image" :alt="product.prodName">
+            <img 
+              :src="product.prodURL" 
+              loading="lazy" 
+              class="product-image" 
+              :alt="product.prodName" 
+            />
           </template>
           <template #cardBody>
             <h5 class="card-title">{{ product.prodName }}</h5>
             <p class="product-price">R{{ product.amount }}</p>
-            <div class="button-wrapper">
-              <router-link class="prod-btn" :to="{name:'product',params:{id:product.prodID}}">
-                <button class="btn btn-dark go-to-product-btn">Go to Product</button>
-              </router-link>
-            </div>
+            <router-link 
+              class="prod-btn" 
+              :to="{name:'product', params:{id: product.prodID}}"
+            >
+              <button class="btn-dark go-to-product-btn">Go to Product</button>
+            </router-link>
           </template>
         </Card>
       </div>
       <div v-else>
         <SpinnerComp v-if="loading" />
+        <p v-if="!loading && !filteredProducts.length">No products found</p>
       </div>
+    </div>
+    <div class="products-footer">
+      <p>Explore more of our collection. We have something for everyone!</p>
     </div>
   </div>
 </template>
 
 <script setup>
-/*eslint-disable*/
-import { useStore } from 'vuex'
-import { computed, onMounted, ref  } from 'vue'
-import SpinnerComp from '@/components/SpinnerComp.vue'
-import Card from '@/components/Card.vue'
-import { useRoute } from 'vue-router'
+import { useStore } from 'vuex';
+import { computed, onMounted, ref } from 'vue';
+import SpinnerComp from '@/components/SpinnerComp.vue';
+import Card from '@/components/Card.vue';
 
-const store = useStore()
-const products = computed(() => store.state.products)
-const searchQuery = ref('')
-const loading = computed(() => store.state.loading)
+const store = useStore();
+const searchQuery = ref('');
 
 onMounted(() => {
-  store.dispatch('fetchProducts')
-})
+  store.dispatch('fetchProducts');
+});
 
-function sortByPrice() {
-  store.dispatch('sortByPrice')
-}
+const products = computed(() => store.state.products);
+const loading = computed(() => store.state.loading);
 
-function sortByName() {
-  store.dispatch('sortByName')
-}
+const sortByPrice = () => store.dispatch('sortByPrice');
+const sortByName = () => store.dispatch('sortByName');
 
 const filteredProducts = computed(() => {
-  if (products.value === null) {
-    return []
+  if (!Array.isArray(products.value)) {
+    return [];
   }
-  return products.value.filter(product => {
-    return product.prodName.toLowerCase().includes(searchQuery.value.toLowerCase())
-  })
-})
+  return products.value.filter(product => 
+    product.prodName.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 </script>
 
 <style scoped>
+.products-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  color: #000;
+}
 
-.products {
+.products-banner {
+  background-color: #f9e5e8; /* Baby pink */
   text-align: center;
   padding: 40px 20px;
-  font-family: "Georgia", serif;
-  color: #333;
-  background-color: #fff;
+  color: #000;
 }
 
-
-.products-title h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #000000;
-  margin-bottom: 20px;
+.products-banner h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
+.products-banner p {
+  font-size: 18px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+}
 
 .search-input {
-  border: 2px solid #000000;
+  flex-grow: 1;
+  padding: 10px;
+  border: 2px solid #c0c0c0; /* Silver border */
   border-radius: 20px;
-  padding: 10px 15px;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
+.sort-buttons {
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}
 
 .sort-btn {
-  background-color: #ffcccb; 
-  border: none;
-  color: #000000;
+  background-color: #000;
+  color: #fff;
   padding: 10px 20px;
-  margin-left: 10px;
   border-radius: 20px;
-  font-size: 1rem;
+  cursor: pointer;
+  font-size: 16px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
 }
 
 .sort-btn:hover {
-  background-color: #ff9999; 
-  color: #ffffff;
+  background-color: #f9e5e8; /* Baby pink hover */
+  color: #000;
 }
 
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
 
 .product-card {
-  background-color: #f8f8f8;
-  border: none;
+  background-color: #fff;
+  border: 1px solid #c0c0c0; /* Silver border */
   border-radius: 15px;
+  padding: 20px;
+  text-align: center;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   transition: transform 0.3s ease;
 }
 
@@ -130,46 +166,71 @@ const filteredProducts = computed(() => {
   transform: scale(1.05);
 }
 
-
 .product-image {
-  height: 200px;
-  object-fit: cover;
-  border-bottom: 2px solid #d3d3d3; 
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
-
 
 .card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #000000;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
-
 
 .product-price {
-  font-size: 1.2rem;
+  font-size: 18px;
   font-weight: bold;
-  color: #ff69b4; 
+  color: #ff69b4; /* Bright pink for the price */
+  margin-bottom: 15px;
 }
 
-
 .go-to-product-btn {
-  background-color: #000000;
-  color: #ffffff;
-  padding: 10px 15px;
-  font-size: 1rem;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
   border-radius: 20px;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .go-to-product-btn:hover {
-  background-color: #ffcccb; 
-  color: #000000;
+  background-color: #f9e5e8; /* Baby pink hover */
+  color: #000;
 }
 
+.products-footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 16px;
+}
 
-.button-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
+@media (max-width: 768px) {
+  .products-page {
+    padding: 20px;
+  }
+
+  .products-banner h1 {
+    font-size: 28px;
+  }
+
+  .products-banner p {
+    font-size: 16px;
+  }
+
+  .search-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sort-buttons {
+    justify-content: center;
+    margin: 0;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
