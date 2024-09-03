@@ -90,7 +90,7 @@ const filteredProducts = computed(() => {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Georgia", serif;
   color: #000;
 }
 

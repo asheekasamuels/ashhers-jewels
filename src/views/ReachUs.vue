@@ -8,8 +8,8 @@
       <h2>Get in Touch</h2>
       <form @submit.prevent="submitForm">
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Enter your name" required />
+          <label for="name">Full Name & Surname</label>
+          <input type="text" id="name" placeholder="Enter your full name & surname" required />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -24,7 +24,7 @@
     </div>
     <div class="contact-info">
       <h2>Our Contact Details</h2>
-      <p>Email: support@jewelry.com</p>
+      <p>Email: support@ashhersjewels.com</p>
       <p>Phone: +123 456 7890</p>
       <p>Address: 123 Jewelry Street, City, Country</p>
     </div>
@@ -42,7 +42,7 @@ const submitForm = () => {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Georgia", serif;
 }
 
 .banner {
