@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-control-wrapper">
                     <span>
-                        <input class="form-control" type="text" placeholder="Age" v-model="payload.age" required />
+                        <input class="form-control" type="text" placeholder="Age" v-model="payload.userAge" required />
                     </span>
                 </div>
                 <div class="form-control-wrapper">
@@ -30,13 +30,13 @@
                 </div>
                 <div class="form-control-wrapper">
                     <span>
-                        <input class="form-control" type="password" placeholder="Password" v-model="payload.pwd"
+                        <input class="form-control" type="password" placeholder="Password" v-model="payload.userPass"
                             required />
                     </span>
                 </div>
                 <div class="form-control-wrapper">
                     <span>
-                        <input class="form-control" type="url" placeholder="Profile link" v-model="payload.profileURL"
+                        <input class="form-control" type="url" placeholder="Profile link" v-model="payload.userProfile"
                             required />
                     </span>
                 </div>
