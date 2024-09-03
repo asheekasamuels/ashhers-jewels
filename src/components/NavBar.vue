@@ -26,10 +26,10 @@
                     <li class="nav-item">
                         <router-link class="nav-link" to="/reachUs">Reach us</router-link>
                     </li>
-                    <ul class="userAccount navbar-nav">
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <router-link class="nav-link" to="/admin">Admin</router-link>
-                    </li> -->
+                    </li>
+                    <ul class="userAccount navbar-nav">
                     <li class="nav-item">
                         <router-link class="nav-link" to="/login">Login</router-link>
                     </li>

@@ -53,11 +53,13 @@ export default createStore({
     async fetchProducts(context) {
       context.commit('setLoading', true);
       try {
-        const { data } = await axios.get(`${apiURL}/products`);
-        if (Array.isArray(data)) {
-          context.commit('setProducts', data);
+        const { results } = await (await axios.get(`${apiURL}/products`)).data
+        console.log(results);
+        
+        if (Array.isArray(results)) {
+          context.commit('setProducts', results);
         } else {
-          console.error('Unexpected API response:', data);
+          console.error('Unexpected API response:', results);
           context.commit('setProducts', []); 
           context.commit('setError', 'Failed to fetch products');
         }
@@ -68,7 +70,7 @@ export default createStore({
         context.commit('setLoading', false);
       }
     },
-  
+    
     sortByPrice({ commit }) {
       commit('sortByPrice')
     },

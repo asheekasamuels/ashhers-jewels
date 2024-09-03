@@ -19,29 +19,15 @@
           </div>
         </div>
       </div>
-      <div class="products-grid" v-if="filteredProducts.length && !loading">
-        <Card 
-          v-for="product in filteredProducts" 
-          :key="product.prodID" 
-          class="product-card"
-        >
+      <div class="products-grid" v-if="products?.length">
+        <Card v-for="product in products" :key="product.prodID" class="product-card">
           <template #cardHeader>
-            <img 
-              :src="product.prodURL" 
-              loading="lazy" 
-              class="product-image" 
-              :alt="product.prodName" 
-            />
+            <img :src="product.prodUrl" loading="lazy" class="product-image" :alt="product.prodName" />
           </template>
           <template #cardBody>
             <h5 class="card-title">{{ product.prodName }}</h5>
             <p class="product-price">R{{ product.amount }}</p>
-            <router-link 
-              class="prod-btn" 
-              :to="{name:'product', params:{id: product.prodID}}"
-            >
-              <button class="btn-dark go-to-product-btn">Go to Product</button>
-            </router-link>
+            <p class="product-description">{{ product.prodDesc }}></p>
           </template>
         </Card>
       </div>
@@ -76,12 +62,16 @@ const sortByPrice = () => store.dispatch('sortByPrice');
 const sortByName = () => store.dispatch('sortByName');
 
 const filteredProducts = computed(() => {
+  console.log('filteredProducts called');
   if (!Array.isArray(products.value)) {
+    console.log('products is not an array');
     return [];
   }
-  return products.value.filter(product => 
+  const filtered = products.value.filter(product => 
     product.prodName.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
+  console.log('filtered products:', filtered);
+  return filtered;
 });
 </script>
 
@@ -148,22 +138,18 @@ const filteredProducts = computed(() => {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-gap: 20px;
+  gap: 30px;
 }
 
 .product-card {
   background-color: #fff;
   border: 1px solid #c0c0c0; /* Silver border */
   border-radius: 15px;
-  padding: 20px;
+  padding: 30px;
   text-align: center;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.product-card:hover {
-  transform: scale(1.05);
 }
 
 .product-image {
