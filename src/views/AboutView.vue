@@ -1,10 +1,9 @@
 <template>
-  <div class="about">
-    <h1>About Us</h1>
-    <p>
-      Welcome to Ashhers Jewels, where sophistication meets artistry in
-      every piece.
-    </p>
+  <div class="about-page">
+    <div class="about-banner">
+      <h1>About Us</h1>
+      <p>Welcome to Ashhers Jewels, where sophistication meets artistry in every piece.</p>
+    </div>
 
     <section class="story">
       <h2>Our Story</h2>
@@ -30,7 +29,7 @@
     </section>
 
     <section class="founders">
-      <h2>Meet the Founders</h2>
+      <h2>Meet the Founder</h2>
       <div class="founder-profile">
         <img src="https://asheekasamuels.github.io/All-Images/images/Asheeka1.jpg" loading="lazy" alt="Asheeka Samuels" class="founder-photo"
         />
@@ -63,22 +62,28 @@ export default {
 </script>
 
 <style scoped>
-.about {
-  text-align: center;
+.about-page {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 40px 20px;
   font-family: "Georgia", serif;
-  color: #333;
-  background-color: #fff;
-}
-
-h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
   color: #000;
 }
 
-p {
-  line-height: 1.6;
+.about-banner {
+  background-color: #f9e5e8; /* Baby pink */
+  text-align: center;
+  padding: 40px 20px;
+  color: #000;
+}
+
+.about-banner h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.about-banner p {
+  font-size: 18px;
 }
 
 .story {
