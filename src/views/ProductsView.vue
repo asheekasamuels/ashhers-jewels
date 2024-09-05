@@ -19,15 +19,16 @@
           </div>
         </div>
       </div>
-      <div class="products-grid" v-if="products?.length">
-        <Card v-for="product in products" :key="product.prodID" class="product-card">
+      <div class="products-grid" v-if="filteredProducts.length">
+        <Card v-for="product in filteredProducts" :key="product.prodID" class="product-card">
           <template #cardHeader>
             <img :src="product.prodUrl" loading="lazy" class="product-image" :alt="product.prodName" />
           </template>
           <template #cardBody>
             <h5 class="card-title">{{ product.prodName }}</h5>
             <p class="product-price">R{{ product.amount }}</p>
-            <p class="product-description">{{ product.prodDesc }}></p>
+            <p class="product-description">{{ product.prodDesc }}</p>
+            <button @click="addToCart(product)" class="add-to-cart-btn">Add to Cart</button>
           </template>
         </Card>
       </div>
@@ -42,18 +43,21 @@
   </div>
 </template>
 
+
 <script setup>
 import { useStore } from 'vuex';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import SpinnerComp from '@/components/SpinnerComp.vue';
 import Card from '@/components/Card.vue';
 
 const store = useStore();
 const searchQuery = ref('');
 
+
 onMounted(() => {
   store.dispatch('fetchProducts');
 });
+
 
 const products = computed(() => store.state.products);
 const loading = computed(() => store.state.loading);
@@ -61,19 +65,27 @@ const loading = computed(() => store.state.loading);
 const sortByPrice = () => store.dispatch('sortByPrice');
 const sortByName = () => store.dispatch('sortByName');
 
+
+const addToCart = (product) => {
+  store.dispatch('addToCart', product);
+};
+
+
 const filteredProducts = computed(() => {
-  console.log('filteredProducts called');
-  if (!Array.isArray(products.value)) {
-    console.log('products is not an array');
-    return [];
+  if (!searchQuery.value) {
+    return products.value;
   }
-  const filtered = products.value.filter(product => 
+  return products.value.filter(product =>
     product.prodName.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
-  console.log('filtered products:', filtered);
-  return filtered;
+});
+
+
+watch(searchQuery, (newQuery) => {
+  console.log('Search query updated:', newQuery);
 });
 </script>
+
 
 <style scoped>
 .products-page {
@@ -85,7 +97,7 @@ const filteredProducts = computed(() => {
 }
 
 .products-banner {
-  background-color: #f9e5e8; /* Baby pink */
+  background-color: #f9e5e8;
   text-align: center;
   padding: 40px 20px;
   color: #000;
@@ -110,7 +122,7 @@ const filteredProducts = computed(() => {
 .search-input {
   flex-grow: 1;
   padding: 10px;
-  border: 2px solid #c0c0c0; /* Silver border */
+  border: 2px solid #c0c0c0;
   border-radius: 20px;
   font-size: 16px;
 }
@@ -132,7 +144,7 @@ const filteredProducts = computed(() => {
 }
 
 .sort-btn:hover {
-  background-color: #f9e5e8; /* Baby pink hover */
+  background-color: #f9e5e8;
   color: #000;
 }
 
@@ -145,7 +157,7 @@ const filteredProducts = computed(() => {
 
 .product-card {
   background-color: #fff;
-  border: 1px solid #c0c0c0; /* Silver border */
+  border: 1px solid #c0c0c0;
   border-radius: 15px;
   padding: 30px;
   text-align: center;
@@ -167,11 +179,11 @@ const filteredProducts = computed(() => {
 .product-price {
   font-size: 18px;
   font-weight: bold;
-  color: #ff69b4; /* Bright pink for the price */
+  color: #ff69b4;
   margin-bottom: 15px;
 }
 
-.go-to-product-btn {
+.add-to-cart-btn {
   background-color: #000;
   color: #fff;
   padding: 10px 20px;
@@ -181,8 +193,8 @@ const filteredProducts = computed(() => {
   font-weight: bold;
 }
 
-.go-to-product-btn:hover {
-  background-color: #f9e5e8; /* Baby pink hover */
+.add-to-cart-btn:hover {
+  background-color: #f9e5e8;
   color: #000;
 }
 

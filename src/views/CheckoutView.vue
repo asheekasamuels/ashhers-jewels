@@ -1,25 +1,81 @@
 <template>
-    <div class="checkout-page">
-      <div class="checkout-banner">
-        <h1>Checkout</h1>
-        <p>Complete your order and enjoy your new jewelry.</p>
-      </div>
-      <div class="order-summary">
-        <h2>Order Summary</h2>
-        <div class="order-items">
-          
+  <div class="checkout-page">
+    <div class="checkout-banner">
+      <h1>Checkout</h1>
+      <p>Complete your order and enjoy your new jewelry.</p>
+    </div>
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div class="order-items">
+        <div v-if="cart.length">
+          <div v-for="item in groupedCart" :key="item.prodID" class="order-item">
+            <img :src="item.prodUrl" class="item-image" :alt="item.prodName" />
+            <div class="item-details">
+              <h3>{{ item.prodName }}</h3>
+              <p>Price: R{{ item.amount }}</p>
+              <p>Quantity: {{ item.quantity }}</p>
+            </div>
+          </div>
+          <div class="order-total">
+            <h3>Total: R{{ totalAmount }}</h3>
+          </div>
+          <button class="btn-submit" @click="handlePurchase">Purchase</button>
         </div>
-      </div>
-     
-      <div class="checkout-footer">
-        <p>Thank you for choosing our jewelry. We hope you enjoy your purchase!</p>
+        <p v-else>Your cart is empty.</p>
       </div>
     </div>
-  </template>
-  
-  <script setup>
+    <div class="checkout-footer">
+      <p>Thank you for choosing our jewelry. We hope you enjoy your purchase!</p>
+    </div>
+  </div>
+</template>
 
-  </script>
+
+<script setup>
+import { computed, onMounted } from 'vue';
+import { useStore } from 'vuex';
+import { toast } from 'vue3-toastify'
+
+const store = useStore();
+const cart = computed(() => store.state.cart);
+const groupedCart = computed(() => {
+const grouped = cart.value.reduce((acc, item) => {
+const found = acc.find(i => i.prodID === item.prodID);
+    if (found) {
+      found.quantity += 1;
+    } else {
+      acc.push({ ...item, quantity: 1 });
+    }
+    return acc;
+  }, []);
+  return grouped;
+});
+
+const totalAmount = computed(() => {
+  return groupedCart.value.reduce((sum, item) => sum + (item.amount * item.quantity), 0);
+});
+
+const handlePurchase = async () => {
+  try {
+    await store.dispatch('purchaseCart');
+    toast.success('Successfully paid!', {
+      autoClose: 2000,
+      position: toast.POSITION.BOTTOM_CENTER
+    });
+    store.commit('setCart', []);
+  } catch (error) {
+    toast.error(`Payment failed: ${error.message}`, {
+      autoClose: 2000,
+      position: toast.POSITION.BOTTOM_CENTER
+    });
+  }
+};
+
+onMounted(() => {
+  store.dispatch('fetchCart');
+});
+</script>
+
   
   <style scoped>
   .checkout-page {
@@ -31,7 +87,7 @@
   }
   
   .checkout-banner {
-    background-color: #f9e5e8; /* Baby pink */
+    background-color: #f9e5e8; 
     text-align: center;
     padding: 40px 20px;
     color: #000;
@@ -48,7 +104,7 @@
   
   .order-summary, .payment-details {
     background-color: #fff;
-    border: 1px solid #c0c0c0; /* Silver border */
+    border: 1px solid #c0c0c0; 
     padding: 30px;
     margin: 20px 0;
     border-radius: 8px;
@@ -99,32 +155,32 @@
   .form-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #c0c0c0; /* Silver border */
+    border: 1px solid #c0c0c0;
     border-radius: 4px;
     font-size: 16px;
   }
   
   .form-group input:focus {
     outline: none;
-    border-color: #f9e5e8; /* Baby pink focus */
+    border-color: #f9e5e8; 
   }
-  
   .btn-submit {
-    background-color: #000;
-    color: #fff;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    width: 100%;
-  }
-  
-  .btn-submit:hover {
-    background-color: #f9e5e8; /* Baby pink hover */
-    color: #000;
-  }
+  background-color: #000;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn-submit:hover {
+  background-color: #f9e5e8; /* Baby pink hover */
+  color: #000;
+}
   
   .checkout-footer {
     text-align: center;
