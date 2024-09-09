@@ -21,7 +21,9 @@
                         <router-link class="nav-link" to="/products">Products</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/checkout">Checkout</router-link>
+                        <router-link class="nav-link" to="/checkout">Checkout
+                            <span v-if="cartCount" class="cart-count">{{ cartCount }}</span>
+                        </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/reachUs">Reach us</router-link>
@@ -42,3 +44,29 @@
         </div>
     </nav>
 </template>
+
+
+<script setup>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+const cart = computed(() => store.state.cart);
+const cartCount = computed(() => {
+  return cart.value.reduce((sum, item) => sum + item.quantity, 0);
+});
+</script>
+
+<style scoped>
+.cart-count {
+  background-color: #fff; /* White background for count */
+  color: #ff69b4; /* Baby pink text */
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 14px;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  font-weight: bold;
+}
+</style>

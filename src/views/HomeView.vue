@@ -3,51 +3,37 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
-        <h1>Welcome to Ashhers Jewels</h1>
+        <video autoplay muted loop>
+          <source src="" type="video/mp4"> 
+        </video>
+        <div class="overlay"></div>
+        <h1>Ashhers Jewels</h1>
         <p>Discover our latest collections and find the perfect piece that tells your unique story.</p>
         <a href="/products" class="cta-button">Shop Now</a>
       </div>
     </section>
 
-    <!-- Recent Products Section -->
-    <section class="recent-products">
-      <h2>Recent Arrivals</h2>
-      <div class="products-container">
-        <div class="product">
-          <img src="https://asheekasamuels.github.io/All-Images/images/Sparkling Infinity Heart Collier Necklace.webp" loading="lazy" alt="Sparkling Infinity Heart Collier Necklace" class="product-image" />
-          <div class="product-info">
-            <h3>Infinity Heart Collier Necklace</h3>
-            <p>R 1399.00</p>
-            <a href="/checkout?product=InfinityHeartCollierNecklace" class="add-to-cart-button">
-              <img src="https://example.com/cart-icon.png" alt="Add to Cart" class="cart-icon" />
-              Add to Cart
-            </a>
-          </div>
+    <!-- Product Categories Section -->
+    <section class="product-categories">
+      <h2>Discover a world of jewellery</h2>
+      <div class="categories-container">
+        <div class="category">
+          <img src="https://www.pandorashop.co.za/media/catalog/product/l/o/low_590041c02_abc123_model_ecom_02_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover" alt="Bracelets" class="category-image" />
+          <a @click.prevent="goToCategory('bracelets')" class="category-link">Bracelets</a>
         </div>
-        <div class="product">
-          <img src="https://asheekasamuels.github.io/All-Images/images/Sparkling Pavè Bars Bracelet.webp" loading="lazy" alt="Sparkling Pavè Bars Bracelet" class="product-image" />
-          <div class="product-info">
-            <h3>Sparkling Pavè Bars Bracelet</h3>
-            <p>R 1779.00</p>
-            <a href="/checkout?product=SparklingPaveBarsBracelet" class="add-to-cart-button">
-              <img src="https://example.com/cart-icon.png" alt="Add to Cart" class="cart-icon" />
-              Add to Cart
-            </a>
-          </div>
+        <div class="category">
+          <img src="https://www.pandorashop.co.za/media/catalog/product/m/e/medium_q324_e_pdp_model_single_04_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover" alt="Rings" class="category-image" />
+          <a @click.prevent="goToCategory('rings')" class="category-link">Rings</a>
         </div>
-        <div class="product">
-          <img src="https://asheekasamuels.github.io/All-Images/images/Row of Hearts Eternity Ring.webp" loading="lazy" alt="Row of Hearts Eternity Ring" class="product-image" />
-          <div class="product-info">
-            <h3>Row of Hearts Eternity Ring</h3>
-            <p>R 1779.00</p>
-            <a href="/checkout?product=RowOfHeartsEternityRing" class="add-to-cart-button">
-              <img src="https://example.com/cart-icon.png" alt="Add to Cart" class="cart-icon" />
-              Add to Cart
-            </a>
-          </div>
+        <div class="category">
+          <img src="https://www.pandorashop.co.za/media/catalog/product/l/o/low_392542c01_v2_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover" alt="Necklaces" class="category-image" />
+          <a @click.prevent="goToCategory('necklaces')" class="category-link">Necklaces</a>
+        </div>
+        <div class="category">
+          <img src="https://www.pandorashop.co.za/media/catalog/product/l/o/low_292549c01_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover" alt="Earrings" class="category-image" />
+          <a @click.prevent="goToCategory('earrings')" class="category-link">Earrings</a>
         </div>
       </div>
-      <!-- <a href="/products" class="cta-button">View All Products</a> -->
     </section>
 
     <!-- Navigation Links -->
@@ -58,10 +44,22 @@
   </div>
 </template>
 
-
 <script>
+import { useRouter } from 'vue-router';
+
 export default {
   name: 'HomeView',
+  setup() {
+    const router = useRouter();
+
+    const goToCategory = (category) => {
+      router.push(`/products/${category}`);
+    };
+
+    return {
+      goToCategory
+    };
+  }
 };
 </script>
 
@@ -72,7 +70,31 @@ export default {
   margin: 0;
   padding: 0;
 }
-
+.header {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  margin-top: 70px; /* Adjust for the fixed nav bar */
+}
+header video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+ }
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay to enhance text visibility */
+  z-index: 1;
+}
 /* Hero Section */
 .hero {
   background: url('') no-repeat center center/cover;
@@ -113,79 +135,50 @@ export default {
   background-color: #b0b0b0; /* Darker silver */
 }
 
-/* Recent Products Section */
-.recent-products {
+/* Product Categories Section */
+.product-categories {
   padding: 40px 20px;
   text-align: center;
   background-color: #f9e5e8; /* Baby pink */
 }
 
-.recent-products h2 {
+.product-categories h2 {
   font-size: 2.5em;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #000;
 }
 
-.products-container {
+.categories-container {
   display: flex;
   justify-content: space-around;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.product {
-  background-color: #fff;
-  border: 1px solid #c0c0c0; /* Silver border */
-  border-radius: 10px;
-  overflow: hidden;
+.category {
   text-align: center;
-  width: 280px;
-  padding: 15px;
+  width: 200px;
 }
 
-.product-image {
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid #c0c0c0; /* Silver border */
+.category-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 10px;
 }
 
-.product-info {
-  padding: 10px 0;
-}
-
-.add-to-cart-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  font-size: 1em;
-  color: #fff;
-  background-color: #000; /* Black */
-  border: none;
-  border-radius: 5px;
+.category-link {
+  display: block;
+  font-size: 1.2em;
+  color: #000;
   text-decoration: none;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
-.add-to-cart-button .cart-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-}
-
-.add-to-cart-button:hover {
-  background-color: #333; /* Darker black */
-}
-
-.recent-products .cta-button {
-  margin-top: 20px;
-  background-color: #000; /* Black */
-  border: none;
-}
-
-.recent-products .cta-button:hover {
-  background-color: #333; /* Darker black */
+.category-link:hover {
+  color: #555;
 }
 
 /* Navigation Links Section */

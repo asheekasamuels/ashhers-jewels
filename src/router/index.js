@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+
 const routes = [
   {
     path: '/',
@@ -9,38 +10,50 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: () => import('@/views/AboutView.vue')
+    component: () => import('../views/AboutView.vue')
   },
   {
     path: '/products',
     name: 'products',
-    component: () => import('@/views/ProductsView.vue')
+    component: () => import('../views/ProductsView.vue')
+  },
+  {
+    path: '/product/:id',
+    name: 'product',
+    component: () => import('../views/SingleView.vue')
   },
   {
     path: '/checkout',
     name: 'checkout',
-    component: () => import('@/views/CheckoutView.vue')
+    component: () => import('../views/CheckoutView.vue')
   },
   {
     path: '/admin',
     name: 'admin',
-    component: () => import('@/views/AdminView.vue')
+    component: () => import('../views/AdminView.vue')
   },
   {
     path: '/reachUs',
     name: 'reachUs',
-    component: () => import('@/views/ReachUs.vue')
+    component: () => import('../views/ReachUs.vue')
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/LoginView.vue')
+    component: () => import('../views/LoginView.vue')
   },
   {
     path: '/signup',
     name: 'signup',
-    component: () => import('@/views/SignUp.vue')
-  }
+    component: () => import('../views/SignUp.vue')
+  },
+
+  // {
+  //   path: '/product',
+  //   name: 'ProductDetails',
+  //   component: () => import('@/views/ProductDetails.vue') // Lazy loading the component
+  // }
+  
 
 ]
 
