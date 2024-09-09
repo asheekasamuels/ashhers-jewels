@@ -84,6 +84,7 @@ export default createStore({
         commit('setLoading', false);
       }
     },
+    
     async fetchUsers({ commit }) {
       commit('setLoading', true);
       try {

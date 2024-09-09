@@ -30,10 +30,7 @@
               <label for="password">Password</label>
               <input type="password" id="password" v-model="payload.userPass" required />
             </div>
-            <div class="form-group">
-              <label for="profile-link">Profile Link</label>
-              <input type="url" id="profile-link" v-model="payload.userProfile" required />
-            </div>
+
             <button type="submit" class="auth-btn">Register</button>
           </form>
         </div>

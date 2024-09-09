@@ -62,7 +62,7 @@
                 >
                 <input
                   type="text"
-                  v-model="payload.email"
+                  v-model="payload.emailAdd"
                   class="form-control"
                   id="exampleFormControlInput1"
                   required
@@ -92,7 +92,7 @@
                 >
                 <input
                   type="number"
-                  v-model="payload.age"
+                  v-model="payload.userAge"
                   class="form-control"
                   id="exampleFormControlInput1"
                   required
@@ -100,29 +100,14 @@
                   oninput="this.setCustomValidity('')"
                 />
               </div>
-  
-              <div class="inputs">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >City</label
-                >
-                <input
-                  type="text"
-                  v-model="payload.city"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  required
-                  oninvalid="this.setCustomValidity('Please insert residing city')"
-                  oninput="this.setCustomValidity('')"
-                />
-              </div>
-  
+
               <div class="inputs">
                 <label for="exampleFormControlInput1" class="form-label"
                   >Password</label
                 >
                 <input
                   type="password"
-                  v-model="payload.userPassword"
+                  v-model="payload.userPass"
                   class="form-control"
                   id="exampleFormControlInput1"
                   required
@@ -134,26 +119,11 @@
   
               <div class="inputs">
                 <label for="exampleFormControlInput1" class="form-label"
-                  >User Image</label
-                >
-                <input
-                  type="url"
-                  v-model="payload.userImage"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  required
-                  oninvalid="this.setCustomValidity('Please insert user image url')"
-                  oninput="this.setCustomValidity('')"
-                />
-              </div>
-  
-              <div class="inputs">
-                <label for="exampleFormControlInput1" class="form-label"
                   >Role</label
                 >
                 <input
                   type="text"
-                  v-model="payload.roles"
+                  v-model="payload.userRole"
                   class="form-control"
                   id="exampleFormControlInput1"
                   required
@@ -177,13 +147,11 @@
         payload: {
           firstName: "",
           lastName: "",
-          email: "",
+          emailAdd: "",
           gender: "",
-          age: "",
-          city: "",
-          userPassword: "",
-          userImage: "https://i.postimg.cc/K8bnFjqz/icons8-user-96.png",
-          roles: "user",
+          userAge: "",
+          userPass: "",
+          userRole: "user",
         },
       };
     },

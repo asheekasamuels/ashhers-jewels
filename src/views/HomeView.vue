@@ -44,22 +44,10 @@
   </div>
 </template>
 
-<script>
-import { useRouter } from 'vue-router';
 
+<script>
 export default {
   name: 'HomeView',
-  setup() {
-    const router = useRouter();
-
-    const goToCategory = (category) => {
-      router.push(`/products/${category}`);
-    };
-
-    return {
-      goToCategory
-    };
-  }
 };
 </script>
 

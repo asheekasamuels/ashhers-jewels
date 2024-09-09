@@ -2,10 +2,10 @@
     <!-- Button trigger modal -->
     <button
       type="button"
-      @click="editProd(product?.productID)"
+      @click="editProd(product?.prodID)"
       class=""
       data-bs-toggle="modal"
-      :data-bs-target="'#editProduct' + product?.productID"
+      :data-bs-target="'#editProduct' + product?.prodID"
     >
       Edit
     </button>
@@ -13,9 +13,9 @@
     <!-- Modal -->
     <div
       class="modal fade"
-      :id="'editProduct' + product?.productID"
+      :id="'editProduct' + product?.prodID"
       tabindex="-1"
-      :aria-labelledby="'editProduct' + product?.productID"
+      :aria-labelledby="'editProduct' + product?.prodID"
       aria-hidden="true"
     >
       <div class="modal-dialog">
@@ -37,7 +37,7 @@
                 >
                 <input
                   type="text"
-                  v-model="payload.productName"
+                  v-model="payload.prodName"
                   class="form-control"
                   id="exampleFormControlInput1"
                 />
@@ -59,7 +59,7 @@
                 >
                 <input
                   type="number"
-                  v-model="payload.price"
+                  v-model="payload.amount"
                   class="form-control"
                   id="exampleFormControlInput1"
                 />
@@ -81,29 +81,18 @@
                 >
                 <input
                   type="text"
-                  v-model="payload.descr"
+                  v-model="payload.desc"
                   class="form-control"
                   id="exampleFormControlInput1"
                 />
               </div>
               <div class="inputs">
                 <label for="exampleFormControlInput1" class="form-label"
-                  >Product Image 1</label
+                  >Product Image </label
                 >
                 <input
                   type="url"
-                  v-model="payload.prodImg1"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                />
-              </div>
-              <div class="inputs">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Product Image 2</label
-                >
-                <input
-                  type="url"
-                  v-model="payload.prodImg2"
+                  v-model="payload.prodUrl"
                   class="form-control"
                   id="exampleFormControlInput1"
                 />
@@ -127,14 +116,14 @@
         },
         updateProdID: null,
         payload: {
-          productID: this.product?.productID,
-          productName: this.product?.productName,
+          prodID: this.product?.prodID,
+          prodName: this.product?.prodName,
           quantity: this.product?.quantity,
-          price: this.product?.price,
+          amount: this.product?.amount,
           category: this.product?.category,
-          descr: this.product?.descr,
-          prodImg1: this.product?.prodImg1,
-          prodImg2: this.product?.prodImg2,
+          desc: this.product?.desc,
+          prodUrl: this.product?.prodUrl,
+      
         },
       };
     },

@@ -191,6 +191,14 @@ const delProduct = (prodID) => {
   color: #000;
 }
 
+/* Added styles for images */
+.styled-table img {
+  max-width: 100px; /* Set a maximum width for the images */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure the image is treated as a block element */
+  margin: 0 auto; /* Center the image in the table cell */
+}
+
 .admin-footer {
   text-align: center;
   margin-top: 30px;

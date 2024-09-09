@@ -34,7 +34,7 @@
                 >
                 <input
                   type="text"
-                  v-model="productData.productName"
+                  v-model="productData.prodName"
                   class="form-control"
                   id="exampleFormControlInput1"
                   required
@@ -65,7 +65,7 @@
                 >
                 <input
                   type="number"
-                  v-model="productData.price"
+                  v-model="productData.amount"
                   class="form-control"
                   id="exampleFormControlInput1"
                   required
@@ -95,7 +95,7 @@
                 >
                 <input
                   type="text"
-                  v-model="productData.descr"
+                  v-model="productData.desc"
                   class="form-control"
                   id="exampleFormControlInput1"
                   required
@@ -106,26 +106,11 @@
   
               <div class="inputs">
                 <label for="exampleFormControlInput1" class="form-label"
-                  >Product Image 1</label
+                  >Product Image</label
                 >
                 <input
                   type="url"
-                  v-model="productData.prodImg1"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  required
-                  oninvalid="this.setCustomValidity('Please insert product image url')"
-                  oninput="this.setCustomValidity('')"
-                />
-              </div>
-  
-              <div class="inputs">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Product Image 2</label
-                >
-                <input
-                  type="url"
-                  v-model="productData.prodImg2"
+                  v-model="productData.prodUrl"
                   class="form-control"
                   id="exampleFormControlInput1"
                   required
@@ -151,11 +136,10 @@
         productData: {
           productName: "",
           quantity: "",
-          price: "",
+          amount: "",
           category: "",
-          descr: "",
-          prodImg1: "",
-          prodImg2: "",
+          desc: "",
+          prodUrl: "",
         },
       };
     },

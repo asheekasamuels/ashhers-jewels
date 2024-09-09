@@ -7,23 +7,18 @@
     <div class="container">
       <div class="options">
         <div class="search-container">
-          <input 
-            type="text" 
-            v-model="searchQuery" 
-            class="search-input" 
-            placeholder="Search" 
-          />
+          <input type="text" v-model="searchQuery" class="search-input" placeholder="Search" />
+          <select v-model="selectedCategory">
+            <option value="All">All</option>
+            <option value="Rings">Rings</option>
+            <option value="Earrings">Earrings</option>
+            <option value="Bracelets">Bracelets</option>
+            <option value="Necklaces">Necklaces</option>
+          </select>
           <div class="sort-buttons">
             <button @click="sortByPrice" class="sort-btn">Sort by Price</button>
             <button @click="sortByName" class="sort-btn">Sort by Name</button>
           </div>
-        </div>
-        <div class="category-buttons">
-          <button @click="filterByCategory('necklace')" class="category-btn">Necklaces</button>
-          <button @click="filterByCategory('ring')" class="category-btn">Rings</button>
-          <button @click="filterByCategory('earring')" class="category-btn">Earrings</button>
-          <button @click="filterByCategory('bracelet')" class="category-btn">Bracelets</button>
-          <button @click="clearCategoryFilter" class="category-btn">All</button>
         </div>
       </div>
       <div class="products-grid" v-if="filteredProducts.length">
@@ -63,7 +58,7 @@ import Card from '@/components/Card.vue';
 
 const store = useStore();
 const searchQuery = ref('');
-const selectedCategory = ref('');
+const selectedCategory = ref('All'); // Default to "All"
 const router = useRouter();
 
 onMounted(() => {
@@ -87,12 +82,14 @@ const goToProduct = (product) => {
 const filteredProducts = computed(() => {
   let result = products.value;
 
-  if (selectedCategory.value) {
+  // Filter by selected category
+  if (selectedCategory.value !== 'All') {
     result = result.filter(product =>
       product.category.toLowerCase() === selectedCategory.value.toLowerCase()
     );
   }
 
+  // Filter by search query
   if (searchQuery.value) {
     result = result.filter(product =>
       product.prodName.toLowerCase().includes(searchQuery.value.toLowerCase())
@@ -101,16 +98,7 @@ const filteredProducts = computed(() => {
 
   return result;
 });
-
-const filterByCategory = (category) => {
-  selectedCategory.value = category;
-};
-
-const clearCategoryFilter = () => {
-  selectedCategory.value = ''; // Changed to empty string
-};
 </script>
-
 <style scoped>
 .products-page {
   max-width: 1200px;
@@ -175,6 +163,11 @@ const clearCategoryFilter = () => {
   color: #000; 
 }
 
+.sort-btn:focus {
+  outline: none; 
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5); 
+}
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -234,6 +227,11 @@ const clearCategoryFilter = () => {
 .toggle-description-btn:hover {
   background-color: #ff69b4; 
   color: #fff; 
+}
+
+.toggle-description-btn:focus {
+  outline: none; 
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5); 
 }
 
 .category-buttons {
@@ -330,5 +328,4 @@ const clearCategoryFilter = () => {
     grid-template-columns: 1fr;
   }
 }
-
 </style>
