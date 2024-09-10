@@ -79,7 +79,7 @@ onMounted(() => {
   
   <style scoped>
   .checkout-page {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 40px 20px;
     font-family: "Georgia", serif;

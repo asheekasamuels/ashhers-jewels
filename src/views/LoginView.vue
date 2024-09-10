@@ -18,7 +18,7 @@
               <label for="login-password">Password</label>
               <input type="password" class="form-control" placeholder="Password" v-model="payload.userPass" minlength="4" required />
             </div>
-            <button type="submit" class="auth-btn">Login</button>
+            <button type="button" class="auth-btn" @click.prevent="login">Login</button>
           </form>
   
           <!-- Sign Up Link -->
@@ -41,17 +41,21 @@
   
   const store = useStore()
   const payload = reactive({
-      emailAdd: '',
-      userPass: ''
+      emailAdd: "",
+      userPass: ""
   })
   function login() {
-      store.dispatch('login', payload)
+      store.dispatch('login', {
+          emailAdd: payload.emailAdd,
+          userPass: payload.userPass
+        
+      })
   }
   </script>
   
   <style scoped>
   .auth-page {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 40px 20px;
     font-family: "Georgia", serif;

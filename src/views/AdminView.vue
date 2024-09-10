@@ -9,9 +9,9 @@
       <div class="table-container">
         <h2>User Table</h2>
         <div class="text-center">
-          <AddUser/>
+          <AddUser />
         </div>
-        <div class="styled-table">
+        <div class="styled-table" >
           <table>
             <thead>
               <tr>
@@ -31,7 +31,7 @@
                 <td>{{ user.lastName }}</td>
                 <td class="none">{{ user.emailAdd }}</td>
                 <td class="none">{{ user.userAge }}</td>
-                <td class="none"> {{ user.userRole }}</td>
+                <td class="none">{{ user.userRole }}</td>
                 <td class="none">
                   <button @click="delUser(user.userID)">Delete</button>
                   <EditUser :user="user" />
@@ -45,7 +45,7 @@
       <div class="table-container">
         <h2>Products Table</h2>
         <div class="text-center">
-          <AddProduct/>
+          <AddProduct />
         </div>
         <div class="styled-table">
           <table>
@@ -97,17 +97,14 @@ import EditProduct from '@/components/EditProduct.vue';
 
 const store = useStore();
 
-// Computed properties to get users and products from the store
 const users = computed(() => store.state.users);
 const products = computed(() => store.state.products);
 
-// Fetch user and product data when the component is mounted
 onMounted(() => {
   store.dispatch('fetchUsers'); 
   store.dispatch('fetchProducts'); 
 });
 
-// Methods to delete users and products
 const delUser = (userID) => {
   store.dispatch('deleteUser', userID); 
 };
@@ -119,7 +116,7 @@ const delProduct = (prodID) => {
 
 <style scoped>
 .admin-page {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: "Georgia", serif;
@@ -127,7 +124,7 @@ const delProduct = (prodID) => {
 }
 
 .admin-banner {
-  background-color: #f9e5e8; /* Baby pink */
+  background-color: #f9e5e8;
   text-align: center;
   padding: 40px 20px;
   color: #000;
@@ -143,15 +140,20 @@ const delProduct = (prodID) => {
 }
 
 .tables-section {
+  display: flex;
+  flex-direction: column; /* Stack tables vertically on smaller screens */
+  align-items: center; /* Center the containers horizontally */
   margin: 40px 0;
 }
 
 .table-container {
   background-color: #fff;
-  border: 1px solid #c0c0c0; /* Silver border */
+  border: 1px solid #c0c0c0;
   padding: 30px;
   margin-bottom: 20px;
   border-radius: 8px;
+  width: 100%; /* Make containers take full width */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: add shadow for depth */
 }
 
 .table-container h2 {
@@ -162,16 +164,18 @@ const delProduct = (prodID) => {
 .styled-table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
+  justify-content: center;
 }
 
 .styled-table th,
 .styled-table td {
   padding: 12px 15px;
-  border: 1px solid #c0c0c0; /* Silver border */
+  border: 1px solid #c0c0c0;
 }
 
 .styled-table th {
-  background-color: #f3f3f3; /* Silver header background */
+  background-color: #f3f3f3;
   color: #000;
 }
 
@@ -180,7 +184,7 @@ const delProduct = (prodID) => {
 }
 
 .styled-table tr:hover {
-  background-color: #ffe6f2; /* Baby pink hover */
+  background-color: #ffe6f2;
 }
 
 .styled-table td {
@@ -191,12 +195,31 @@ const delProduct = (prodID) => {
   color: #000;
 }
 
-/* Added styles for images */
+button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff1493;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 .styled-table img {
-  max-width: 100px; /* Set a maximum width for the images */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Ensure the image is treated as a block element */
-  margin: 0 auto; /* Center the image in the table cell */
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .admin-footer {
@@ -205,7 +228,6 @@ const delProduct = (prodID) => {
   font-size: 16px;
 }
 
-/* Media Queries */
 @media (max-width: 700px) {
   .admin-page {
     padding: 20px;
@@ -271,4 +293,6 @@ const delProduct = (prodID) => {
     font-size: 12px;
   }
 }
+
+
 </style>

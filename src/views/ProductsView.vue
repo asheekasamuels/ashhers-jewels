@@ -6,21 +6,26 @@
     </div>
     <div class="container">
       <div class="options">
-        <div class="search-container">
+        <div class="search-category">
+          <!-- Search Bar and Category Dropdown -->
           <input type="text" v-model="searchQuery" class="search-input" placeholder="Search" />
-          <select v-model="selectedCategory">
+          <select v-model="selectedCategory" class="category-btn">
             <option value="All">All</option>
             <option value="Rings">Rings</option>
             <option value="Earrings">Earrings</option>
             <option value="Bracelets">Bracelets</option>
             <option value="Necklaces">Necklaces</option>
           </select>
-          <div class="sort-buttons">
-            <button @click="sortByPrice" class="sort-btn">Sort by Price</button>
-            <button @click="sortByName" class="sort-btn">Sort by Name</button>
-          </div>
+        </div>
+
+        <!-- Sort Buttons on the Right -->
+        <div class="sort-buttons">
+          <button @click="sortByPrice" class="sort-btn">Sort by Price</button>
+          <button @click="sortByName" class="sort-btn">Sort by Name</button>
         </div>
       </div>
+
+      <!-- Product Grid -->
       <div class="products-grid" v-if="filteredProducts.length">
         <Card v-for="product in filteredProducts" :key="product.prodID" class="product-card">
           <template #cardHeader>
@@ -38,11 +43,14 @@
           </template>
         </Card>
       </div>
+
+      <!-- No Products Found or Loading Spinner -->
       <div v-else>
         <SpinnerComp v-if="loading" />
         <p v-if="!loading && !filteredProducts.length">No products found</p>
       </div>
     </div>
+    
     <div class="products-footer">
       <p>Explore more of our collection. We have something for everyone!</p>
     </div>
@@ -99,9 +107,10 @@ const filteredProducts = computed(() => {
   return result;
 });
 </script>
+
 <style scoped>
 .products-page {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: "Georgia", serif;
@@ -124,16 +133,24 @@ const filteredProducts = computed(() => {
   font-size: 18px;
 }
 
-.search-container {
+.options {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 30px 0;
+  width: 100%;
+}
+
+.search-category {
+  display: flex;
+  gap: 15px;
+  flex: 1;
+  align-items: center;
 }
 
 .search-input {
-  flex-grow: 1;
-  padding: 10px;
+  width: 200px; /* Make search bar smaller */
+  padding: 8px;
   border: 2px solid #c0c0c0;
   border-radius: 25px;
   font-size: 16px;
@@ -143,29 +160,28 @@ const filteredProducts = computed(() => {
 .sort-buttons {
   display: flex;
   gap: 10px;
-  margin-left: 20px;
 }
 
-.sort-btn {
+.sort-btn, .category-btn {
   background-color: #ff69b4;
   color: #fff;
   padding: 10px 20px;
-  border-radius: 25px; 
+  border-radius: 25px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.sort-btn:hover {
+.sort-btn:hover, .category-btn:hover {
   background-color: #f9e5e8; 
-  color: #000; 
+  color: #000;
 }
 
-.sort-btn:focus {
-  outline: none; 
-  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5); 
+.sort-btn:focus, .category-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5);
 }
 
 .products-grid {
@@ -181,12 +197,12 @@ const filteredProducts = computed(() => {
   border-radius: 15px;
   padding: 30px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.3s ease; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-3px); 
+  transform: translateY(-3px);
 }
 
 .product-image {
@@ -204,74 +220,11 @@ const filteredProducts = computed(() => {
 .product-price {
   font-size: 18px;
   font-weight: bold;
-  color: #ff69b4; 
+  color: #ff69b4;
   margin-bottom: 15px;
 }
 
-.product-description {
-  margin-bottom: 15px;
-}
-
-.toggle-description-btn {
-  background-color: #f9e5e8; 
-  color: #000;
-  padding: 10px 20px;
-  border-radius: 25px; 
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-}
-
-.toggle-description-btn:hover {
-  background-color: #ff69b4; 
-  color: #fff; 
-}
-
-.toggle-description-btn:focus {
-  outline: none; 
-  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5); 
-}
-
-.category-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.category-btn {
-  background-color: #fff; 
-  color: #333; 
-  padding: 10px 15px;
-  border-radius: 25px;
-  border: 2px solid #ccc; 
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-}
-
-.category-btn:hover {
-  background-color: #f0f0f0; 
-  color: #000; 
-  border-color: #999; 
-}
-
-.category-btn:active {
-  transform: translateY(1px);
-}
-
-.category-btn:focus {
-  outline: none; 
-  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5); 
-}
-
-.add-to-cart-btn {
+.add-to-cart-btn, .toggle-description-btn {
   background-color: #ff69b4;
   color: #fff;
   padding: 10px 20px;
@@ -279,20 +232,20 @@ const filteredProducts = computed(() => {
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  display: inline-flex; 
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-cart-btn:hover, .toggle-description-btn:hover {
+  background-color: #f9e5e8;
+  color: #000;
 }
 
 .add-to-cart-btn i {
-  margin-right: 8px; 
-}
-
-.add-to-cart-btn:hover {
-  background-color: #f9e5e8; 
-  color: #000; 
+  margin-right: 8px;
 }
 
 .products-footer {
@@ -302,30 +255,14 @@ const filteredProducts = computed(() => {
 }
 
 @media (max-width: 768px) {
-  .products-page {
-    padding: 20px;
-  }
-
-  .products-banner h1 {
-    font-size: 28px;
-  }
-
-  .products-banner p {
-    font-size: 16px;
-  }
-
-  .search-container {
+  .options {
     flex-direction: column;
     gap: 20px;
   }
 
   .sort-buttons {
     justify-content: center;
-    margin: 0;
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
   }
 }
 </style>
+

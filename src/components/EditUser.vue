@@ -3,6 +3,7 @@
   <button
     type="button"
     @click="openModal(user?.userID)"
+    class="btn-edit"
     data-bs-toggle="modal"
     :data-bs-target="'#editUser' + user?.userID"
   >
@@ -84,8 +85,8 @@
                 required
               />
             </div>
-            <button type="reset" class="">Reset</button>
-            <button type="submit" class="">Save</button>
+            <button type="reset" class="btn-reset">Reset</button>
+            <button type="submit" class="btn-save">Save</button>
           </form>
         </div>
       </div>
@@ -104,7 +105,7 @@ export default {
         userID: this.user?.userID,
         firstName: this.user?.firstName,
         lastName: this.user?.lastName,
-        emailAdd: this.user?.emailAdd, // Ensure this matches with the v-model
+        emailAdd: this.user?.emailAdd, 
         gender: this.user?.gender,
         userAge: this.user?.userAge,
       },
@@ -115,10 +116,10 @@ export default {
     this.updateUserID = userID;
     const user = this.$store.state.users.find((user) => user.userID === userID);
     if (user) {
-      this.payload = { ...user }; // Populate the payload with user data
+      this.payload = { ...user }; 
     }
   },
-  async updateUser() { // Make this an async method
+  async updateUser() { 
     try {
       await this.$store.dispatch("updateUser", {
         userID: this.updateUserID,
@@ -135,3 +136,81 @@ export default {
 
 };
 </script>
+
+<style scoped>
+/* Button styles */
+.btn-edit {
+  background-color: #ff69b4; /* Hot pink */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  padding: 10px 15px; /* Padding for a better button size */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.btn-edit:hover {
+  background-color: #ff1493; /* Darker pink on hover */
+}
+
+/* Modal header styles */
+.modal-header {
+  background-color: #f9e5e8; /* Baby pink */
+  border-bottom: 1px solid #c0c0c0; /* Silver border */
+}
+
+/* Modal body styles */
+.modal-body {
+  padding: 20px;
+}
+
+/* Input field styles */
+.inputs {
+  margin-bottom: 15px;
+}
+
+.inputs .form-label {
+  font-weight: bold;
+}
+
+/* Form control styles */
+.form-control {
+  border: 1px solid #c0c0c0; /* Silver border */
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Reset button styles */
+.btn-reset {
+  background-color: #ccc; /* Gray */
+  color: #000; /* Black text */
+  border: none; /* Remove default border */
+  padding: 10px 15px; /* Padding for a better button size */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+  margin-right: 10px; /* Space between buttons */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.btn-reset:hover {
+  background-color: #b3b3b3; /* Darker gray on hover */
+}
+
+/* Save button styles */
+.btn-save {
+  background-color: #ff69b4; /* Hot pink */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  padding: 10px 15px; /* Padding for a better button size */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.btn-save:hover {
+  background-color: #ff1493; /* Darker pink on hover */
+}
+
+</style>

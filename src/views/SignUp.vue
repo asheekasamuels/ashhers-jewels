@@ -1,69 +1,68 @@
 <template>
-    <div class="auth-page">
-      <div class="auth-banner">
-        <h1>Create an Account</h1>
-        <p>Join us to access exclusive jewelry collections.</p>
-      </div>
-  
-      <div class="auth-container">
-        <!-- Registration Form -->
-        <div class="form-container">
-          <h2>Register</h2>
-          <form @submit.prevent="register">
-            <div class="form-group">
-              <label for="first-name">First Name</label>
-              <input type="text" id="first-name" v-model="payload.firstName" required />
-            </div>
-            <div class="form-group">
-              <label for="last-name">Last Name</label>
-              <input type="text" id="last-name" v-model="payload.lastName" required />
-            </div>
-            <div class="form-group">
-              <label for="age">Age</label>
-              <input type="number" id="age" v-model="payload.userAge" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" v-model="payload.emailAdd" required />
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" id="password" v-model="payload.userPass" required />
-            </div>
+  <div class="auth-page">
+    <div class="auth-banner">
+      <h1>Create an Account</h1>
+      <p>Join us to access exclusive jewelry collections.</p>
+    </div>
 
-            <button type="submit" class="auth-btn">Register</button>
-          </form>
-        </div>
-      </div>
-  
-      <div class="auth-footer">
-        <p>Already have an account? <router-link to="/login" class="link">Log in here</router-link></p>
+    <div class="auth-container">
+      <!-- Registration Form -->
+      <div class="form-container">
+        <h2>Register</h2>
+        <form @submit.prevent="register">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" placeholder="First Name" v-model="payload.firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" placeholder="Last Name" v-model="payload.lastName" required />
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="Age" v-model="payload.userAge" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Email Address" v-model="payload.emailAdd" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Password" v-model="payload.userPass" required />
+          </div>
+
+          <button type="submit" class="auth-btn">Register</button>
+        </form>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { reactive } from 'vue';
-  import { useStore } from 'vuex';
-  
-  const store = useStore();
-  const payload = reactive({
-    firstName: '',
-    lastName: '',
-    age: '',
-    emailAdd: '',
-    pwd: '',
-    profileURL: 'https://i.postimg.cc/3rZ0H0D8/profile-Image.png'
-  });
-  
-  function register() {
-    store.dispatch('register', payload);
-  }
-  </script>
+
+    <div class="auth-footer">
+      <p>Already have an account? <router-link to="/login" class="link">Log in here</router-link></p>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { reactive } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+const payload = reactive({
+  firstName: '',
+  lastName: '',
+  userAge: '',
+  emailAdd: '',
+  userPass: '',
+});
+
+function register() {
+  store.dispatch('register', payload);
+}
+</script>
   
   <style scoped>
   .auth-page {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 40px 20px;
     font-family: "Georgia", serif;

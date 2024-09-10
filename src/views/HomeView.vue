@@ -85,7 +85,7 @@ header .overlay {
 }
 /* Hero Section */
 .hero {
-  background: url('') no-repeat center center/cover;
+  /* background: url('') no-repeat center center/cover; */
   padding: 80px 20px;
   color: black;
   text-align: center;
