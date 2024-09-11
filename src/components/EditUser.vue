@@ -100,7 +100,6 @@ export default {
   data() {
     return {
       updateUserID: null,
-
       payload: {
         userID: this.user?.userID,
         firstName: this.user?.firstName,
@@ -112,42 +111,41 @@ export default {
     };
   },
   methods: {
-  openModal(userID) {
-    this.updateUserID = userID;
-    const user = this.$store.state.users.find((user) => user.userID === userID);
-    if (user) {
-      this.payload = { ...user }; 
-    }
+    openModal(userID) {
+      this.updateUserID = userID;
+      const user = this.$store.state.users.find((user) => user.userID === userID);
+      if (user) {
+        this.payload = { ...user }; 
+      }
+    },
+    async updateUser() { 
+      try {
+        await this.$store.dispatch("editUser", { // Use editUser instead of updateUser
+          userID: this.updateUserID,
+          ...this.payload,
+        });
+        alert("User has been updated");
+        console.log("User has been updated");
+      } catch (err) {
+        console.error("Error", err);
+        alert("Failed to update user: " + err.message); // Notify user of the error
+      }
+    },
   },
-  async updateUser() { 
-    try {
-      await this.$store.dispatch("updateUser", {
-        userID: this.updateUserID,
-        ...this.payload,
-      });
-      alert("User has been updated");
-      console.log("User has been updated");
-    } catch (err) {
-      console.error("Error", err);
-      alert("Failed to update user: " + err.message); // Notify user of the error
-    }
-  },
-},
-
 };
 </script>
 
 <style scoped>
-/* Button styles */
+
 .btn-edit {
-  background-color: #ff69b4; /* Hot pink */
-  color: white; /* Text color */
-  border: none; /* Remove default border */
-  padding: 10px 15px; /* Padding for a better button size */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Font size */
-  transition: background-color 0.3s ease; /* Smooth transition */
+  background-color: #ff69b4; 
+  color: white; 
+  border: none; 
+  padding: 10px 15px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  transition: background-color 0.3s ease; 
 }
 
 .btn-edit:hover {

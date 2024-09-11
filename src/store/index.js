@@ -1,11 +1,10 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import { toast } from 'vue3-toastify'
+import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 import { applyToken } from '../../src/service/AuthenticatedUser.js';
 import { useCookies } from 'vue3-cookies';
 import router from '@/router/index.js';
-// import { register } from 'register-service-worker';
 
 const { cookies } = useCookies();
 const apiURL = 'https://ashhers-jewels.onrender.com';
@@ -148,7 +147,7 @@ export default createStore({
         commit('setError', e.message);
       }
     },
-    async updateUser({ commit}, payload) {
+    async updateUser({ commit }, payload) {
       try {
         const response = await axios.put(`${apiURL}/users/${payload.userID}`, payload);
         commit('setUser', response.data); // Update the user in the state
@@ -180,44 +179,108 @@ export default createStore({
     },
     async registerUser(context, payload){
       try {
-        const {token, msg} = await (await axios.post(`${apiURL}/users/register`, payload)).data;
+        const { token, msg } = await (await axios.post(`${apiURL}/users/register`, payload)).data;
         if (token) {
           console.log(msg);
-          
           toast.success(`Added new user. Thank you😎`, {
             autoClose: 2000,
-            position: toast.POSITION.BOTTOM_CENTER
+            position: toast.POSITION.BOTTOM_CENTER,
           });
-
-          router.push({name : 'products'})
+          router.push({ name: 'products' });
         }
       } catch (error) {
         toast.error(error.message, {
           autoClose: 2000,
           position: toast.POSITION.BOTTOM_CENTER,
-        })
+        });
       }
     },
     async login(context, payload) {
       try {
-        const {token, result, msg} = await (await axios.post(`${apiURL}/users/login`, payload)).data;
-        
+        const { token, result, msg } = await (await axios.post(`${apiURL}/users/login`, payload)).data;
         if (result) {
           console.log(token);
           toast.success(`${msg}`, {
             autoClose: 2000,
-            position: toast.POSITION.BOTTOM_CENTER
+            position: toast.POSITION.BOTTOM_CENTER,
           });
-
-          router.push({name : 'products'})
+          router.push({ name: 'products' });
         }
       } catch (error) {
         toast.error(error.message, {
           autoClose: 2000,
           position: toast.POSITION.BOTTOM_CENTER,
-        })
+        });
       }
     },
+    
+    // New async actions
+    async addProduct({ commit, state }, payload) {
+      try {
+        const response = await axios.post(`${apiURL}/products`, payload);
+        commit('setProducts', [...state.products, response.data]);
+        toast.success('Product added successfully', {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      } catch (error) {
+        toast.error(error.message, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+        commit('setError', error.message);
+      }
+    },
+    async editProduct({ commit, state }, payload) {
+      try {
+        const response = await axios.put(`${apiURL}/products/${payload.productID}`, payload);
+        commit('setProducts', state.products.map(product => (product.productID === payload.productID ? response.data : product)));
+        toast.success('Product updated successfully', {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      } catch (error) {
+        toast.error(error.message, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+        commit('setError', error.message);
+      }
+    },
+    async editUser({ commit }, payload) {
+      try {
+        const response = await axios.put(`${apiURL}/users/${payload.userID}`, payload);
+        commit('setUser', response.data); 
+        toast.success('User updated successfully', {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+        return response.data; 
+      } catch (error) {
+        toast.error(error.message, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+        commit('setError', error.message); 
+        throw error; 
+      }
+    },
+    async deleteCart({ commit }) {
+      try {
+        await axios.delete(`${apiURL}/cart`);
+        commit('setCart', []); 
+        toast.success('Cart deleted successfully', {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      } catch (error) {
+        toast.error(error.message, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+        commit('setError', error.message);
+      }
+    }
   },
   getters: {
     isLoading(state) {
@@ -229,14 +292,14 @@ export default createStore({
     getError(state) {
       return state.error;
     },
+    getProducts(state) {
+      return state.products;
+    },
     getCart(state) {
       return state.cart;
     },
-    getUsers(state) {
-      return state.users;
-    },
-    getProducts(state) {
-      return state.products;
+    getUser(state) {
+      return state.user;
     }
   }
 });

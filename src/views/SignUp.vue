@@ -9,41 +9,89 @@
       <!-- Registration Form -->
       <div class="form-container">
         <h2>Register</h2>
-        <form >
+        <form @submit.prevent="register">
           <div class="form-group">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" placeholder="First Name" v-model="payload.firstName" required />
+            <input
+              type="text"
+              id="first-name"
+              placeholder="First Name"
+              v-model="payload.firstName"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" placeholder="Last Name" v-model="payload.lastName" required />
+            <input
+              type="text"
+              id="last-name"
+              placeholder="Last Name"
+              v-model="payload.lastName"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="age">Age</label>
-            <input type="number" id="age" placeholder="Age" v-model="payload.userAge" required />
+            <input
+              type="number"
+              id="age"
+              placeholder="Age"
+              v-model="payload.userAge"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="gender">Gender</label>
-            <input type="text" id="gender" placeholder="Gender" v-model="payload.gender" required />
+            <input
+              type="text"
+              id="gender"
+              placeholder="Gender"
+              v-model="payload.gender"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="role">Role</label>
-            <input type="text" id="role" placeholder="Role" v-model="payload.userRole" required />
+            <input
+              type="text"
+              id="role"
+              placeholder="Role"
+              v-model="payload.userRole"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="Email Address" v-model="payload.emailAdd" required />
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              v-model="payload.emailAdd"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Password" v-model="payload.userPass" required />
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              v-model="payload.userPass"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="profile-image">Profile Image</label>
-            <input type="text" id="profile-image" placeholder="Profile Image" v-model="payload.userProfile" required />
+            <input
+              type="text"
+              id="profile-image"
+              placeholder="Profile Image"
+              v-model="payload.userProfile"
+              required
+            />
           </div>
 
-          <button type="submit" @click.prevent="register" class="auth-btn">Register</button>
+          <button type="submit" class="auth-btn">Register</button>
         </form>
       </div>
     </div>
@@ -57,11 +105,9 @@
 <script setup>
 import store from '@/store';
 import { reactive } from 'vue';
-// import { useStore } from 'vuex';
-
 
 const payload = reactive({
-  firstName : "",
+  firstName: "",
   lastName: "",
   userAge: 0,
   gender: "",
@@ -72,9 +118,8 @@ const payload = reactive({
 });
 
 function register() {
-  
   const cred = {
-    firstName : payload.firstName,
+    firstName: payload.firstName,
     lastName: payload.lastName,
     userAge: payload.userAge,
     gender: payload.gender,
@@ -87,104 +132,100 @@ function register() {
   store.dispatch('registerUser', cred);
 }
 </script>
-  
-  <style scoped>
-  .auth-page {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    font-family: "Georgia", serif;
-    color: #000;
-  }
-  
-  .auth-banner {
-    background-color: #f9e5e8; /* Baby pink */
-    text-align: center;
-    padding: 40px 20px;
-    color: #000;
-  }
-  
-  .auth-banner h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
-  
-  .auth-banner p {
-    font-size: 18px;
-  }
-  
-  .auth-container {
-    margin: 40px 0;
-  }
-  
-  .form-container {
-    background-color: #fff;
-    border: 1px solid #c0c0c0; /* Silver border */
-    padding: 30px;
-    border-radius: 8px;
-  }
-  
-  .form-container h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #c0c0c0; /* Silver border */
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .auth-btn {
-    background-color: #000;
-    color: #fff;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    width: 100%;
-    margin-top: 10px;
-  }
-  
-  .auth-btn:hover {
-    background-color: #f9e5e8; /* Baby pink hover */
-    color: #000;
-  }
-  
-  .auth-footer {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 16px;
-  }
-  
-  .auth-footer .link {
-    color: #ff69b4; /* Hot pink */
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  .auth-footer .link:hover {
-    text-decoration: underline;
-  }
-  
-  @media (max-width: 768px) {
-    .auth-container {
-      padding: 20px;
-    }
-  }
-  </style>
+
+<style scoped>
+.auth-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Georgia", serif;
+  color: #333;
+}
+
+.auth-banner {
+  background-color: #f9e5e8; /* Light pink background */
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-banner h1 {
+  color: #d88f94; /* Baby pink color */
+  font-size: 2.5rem;
+}
+
+.auth-banner p {
+  color: #555; /* Darker gray for readability */
+}
+
+.auth-container {
+  margin-top: 30px;
+}
+
+.form-container {
+  background-color: #fff; /* White background for form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  color: #d88f94; /* Baby pink for form heading */
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #d88f94; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+.auth-btn {
+  background-color: #d88f94; /* Baby pink button */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.auth-btn:hover {
+  background-color: #c77b86; /* Darker pink on hover */
+}
+
+.auth-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.auth-footer p {
+  font-size: 0.9rem;
+}
+
+.link {
+  color: #d88f94; /* Baby pink for sign-in link */
+  text-decoration: underline;
+}
+</style>
+
   

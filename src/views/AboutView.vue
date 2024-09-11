@@ -31,7 +31,11 @@
     <section class="founders">
       <h2>Meet the Founder</h2>
       <div class="founder-profile">
-        <img src="https://asheekasamuels.github.io/All-Images/images/Asheeka1.jpg" loading="lazy" alt="Asheeka Samuels" class="founder-photo"
+        <img
+          src="https://asheekasamuels.github.io/All-Images/images/Asheeka1.jpg"
+          loading="lazy"
+          alt="Asheeka Samuels"
+          class="founder-photo"
         />
         <div class="founder-info">
           <h3>Asheeka Samuels</h3>
@@ -39,15 +43,14 @@
             Asheeka Samuels is the visionary behind Ashhers Jewels. With an
             extensive background in jewelry design and a passion for exceptional
             craftsmanship, Asheeka has meticulously curated each
-            collection to reflect elegance and individuality. She
-            brings a deep understanding of design aesthetics and a commitment to
-            creating timeless pieces that resonate with our customers.
+            collection to reflect elegance and individuality. She brings a deep
+            understanding of design aesthetics and a commitment to creating
+            timeless pieces that resonate with our customers.
           </p>
           <p>
             Driven by a love for beautiful things and a dedication to quality,
-            Asheeka aims to make Ashhers Jewels a symbol of
-            elegance and a go-to destination for those who appreciate the finer
-            things in life.
+            Asheeka aims to make Ashhers Jewels a symbol of elegance and a
+            go-to destination for those who appreciate the finer things in life.
           </p>
         </div>
       </div>
@@ -63,73 +66,69 @@ export default {
 
 <style scoped>
 .about-page {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: "Georgia", serif;
-  color: #000;
-}
-
-.about-banner {
-  background-color: #f9e5e8; /* Baby pink */
-  text-align: center;
-  padding: 40px 20px;
-  color: #000;
-}
-
-.about-banner h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.about-banner p {
-  font-size: 18px;
-}
-
-.story {
-  margin: 40px 0;
-  padding: 0 20px;
   color: #333;
 }
 
-.founders {
-  margin: 40px 0;
-  padding: 0 20px;
-  background-color: #f9e5e8;
-  border-top: 3px solid #c0c0c0; 
+.about-banner {
+  background-color: #f9e5e8; /* Light pink background */
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-banner h1 {
+  color: #d88f94; /* Baby pink color */
+  font-size: 2.5rem;
+}
+
+.about-banner p {
+  color: #555; /* Darker gray for readability */
+}
+
+.story, .founders {
+  margin-top: 30px;
+}
+
+.story h2, .founders h2 {
+  color: #d88f94; /* Baby pink for section headers */
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.story p, .founder-info p {
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
 .founder-profile {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
 }
 
 .founder-photo {
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border: 4px solid #c0c0c0; 
-}
-
-.founder-info {
-  max-width: 600px;
-  margin: 0 auto;
+  border-radius: 50%; /* Circular image */
+  width: 120px;
+  height: 120px;
+  object-fit: cover; /* Maintain aspect ratio */
+  margin-right: 20px; /* Space between image and text */
 }
 
 .founder-info h3 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  color: #000;
-  border-bottom: 2px solid #c0c0c0;
-  padding-bottom: 5px;
+  margin: 0;
+  color: #333; /* Darker text color for founder's name */
 }
 
-.founder-info p {
-  font-size: 1em;
-  color: #333;
+.founder-info {
+  flex: 1; /* Take up remaining space */
 }
 </style>

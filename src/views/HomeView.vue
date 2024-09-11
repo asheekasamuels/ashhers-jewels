@@ -1,194 +1,197 @@
 <template>
-  <div class="home">
+  <div class="home-page">
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
-        <video autoplay muted loop>
-          <source src="" type="video/mp4"> 
+        <video autoplay muted loop class="hero-video">
+          <source src="" type="video/mp4" />
         </video>
         <div class="overlay"></div>
         <h1>Ashhers Jewels</h1>
-        <p>Discover our latest collections and find the perfect piece that tells your unique story.</p>
+        <p>
+          Discover our latest collections and find the perfect piece that tells
+          your unique story.
+        </p>
         <a href="/products" class="cta-button">Shop Now</a>
       </div>
     </section>
 
     <!-- Product Categories Section -->
     <section class="product-categories">
-      <h2>Discover a world of jewellery</h2>
+      <h2>Discover a World of Jewellery</h2>
       <div class="categories-container">
-        <div class="category">
-          <img src="https://www.pandorashop.co.za/media/catalog/product/l/o/low_590041c02_abc123_model_ecom_02_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover" alt="Bracelets" class="category-image" />
-          <a @click.prevent="goToCategory('bracelets')" class="category-link">Bracelets</a>
-        </div>
-        <div class="category">
-          <img src="https://www.pandorashop.co.za/media/catalog/product/m/e/medium_q324_e_pdp_model_single_04_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover" alt="Rings" class="category-image" />
-          <a @click.prevent="goToCategory('rings')" class="category-link">Rings</a>
-        </div>
-        <div class="category">
-          <img src="https://www.pandorashop.co.za/media/catalog/product/l/o/low_392542c01_v2_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover" alt="Necklaces" class="category-image" />
-          <a @click.prevent="goToCategory('necklaces')" class="category-link">Necklaces</a>
-        </div>
-        <div class="category">
-          <img src="https://www.pandorashop.co.za/media/catalog/product/l/o/low_292549c01_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover" alt="Earrings" class="category-image" />
-          <a @click.prevent="goToCategory('earrings')" class="category-link">Earrings</a>
+        <div class="category" v-for="(category, index) in categories" :key="index">
+          <img :src="category.image" :alt="category.name" class="category-image" />
+          <a @click.prevent="goToCategory(category.name.toLowerCase())" class="category-link">{{ category.name }}</a>
         </div>
       </div>
     </section>
 
     <!-- Navigation Links -->
-    <section class="links">
+    <section class="navigation-links">
       <a href="/about" class="link-button">About Us</a>
       <a href="/products" class="link-button">All Products</a>
     </section>
   </div>
 </template>
 
+<script setup>
+const categories = [
+  {
+    name: "Bracelets",
+    image: "https://www.pandorashop.co.za/media/catalog/product/l/o/low_590041c02_abc123_model_ecom_02_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
+  },
+  {
+    name: "Rings",
+    image: "https://www.pandorashop.co.za/media/catalog/product/m/e/medium_q324_e_pdp_model_single_04_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
+  },
+  {
+    name: "Necklaces",
+    image: "https://www.pandorashop.co.za/media/catalog/product/l/o/low_392542c01_v2_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
+  },
+  {
+    name: "Earrings",
+    image: "https://www.pandorashop.co.za/media/catalog/product/l/o/low_292549c01_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
+  },
+];
 
-<script>
-export default {
-  name: 'HomeView',
-};
+function goToCategory(category) {
+  window.location.href = `/products/${category}`
+
+}
 </script>
 
 <style scoped>
-.home {
-  font-family: "Georgia", serif;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-.header {
+/* Hero Section */
+.hero {
   position: relative;
-  height: 100vh;
-  overflow: hidden;
-  text-align: center;
-  margin-top: 70px; /* Adjust for the fixed nav bar */
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
 }
-header video {
+
+.hero-video {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: -1;
- }
-header .overlay {
+}
+
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay to enhance text visibility */
-  z-index: 1;
-}
-/* Hero Section */
-.hero {
-  /* background: url('') no-repeat center center/cover; */
-  padding: 80px 20px;
-  color: black;
-  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
 }
 
 .hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.hero h1 {
-  font-size: 3em;
-  margin-bottom: 10px;
   color: black;
+  text-align: center;
+  z-index: 1;
 }
 
-.hero p {
-  font-size: 1.2em;
+.hero-content h1 {
+  font-family: "Georgia", serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #d88f94; /* Baby pink */
   margin-bottom: 20px;
 }
 
+.hero-content p {
+  font-family: "Georgia", serif;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
 .cta-button {
-  display: inline-block;
-  padding: 15px 30px;
-  font-size: 1.1em;
-  color: #fff;
-  background-color: #c0c0c0; /* Silver */
+  background-color: #d88f94; /* Baby pink */
+  color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
   text-decoration: none;
-  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .cta-button:hover {
-  background-color: #b0b0b0; /* Darker silver */
+  background-color: #c77b86; /* Darker pink on hover */
 }
 
 /* Product Categories Section */
 .product-categories {
-  padding: 40px 20px;
+  padding: 60px 20px;
   text-align: center;
-  background-color: #f9e5e8; /* Baby pink */
 }
 
 .product-categories h2 {
-  font-size: 2.5em;
-  margin-bottom: 30px;
-  color: #000;
+  font-family: "Georgia", serif;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
 }
 
 .categories-container {
   display: flex;
-  justify-content: space-around;
-  gap: 20px;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 40px;
 }
 
 .category {
+  max-width: 240px;
   text-align: center;
-  width: 200px;
 }
 
 .category-image {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  border: 1px solid #e0e0e0;
-  margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .category-link {
+  font-family: "Georgia", serif;
   display: block;
-  font-size: 1.2em;
-  color: #000;
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #d88f94; /* Baby pink */
   text-decoration: none;
-  font-weight: bold;
-  margin-top: 5px;
+  transition: color 0.3s ease;
 }
 
 .category-link:hover {
-  color: #555;
+  color: #c77b86; /* Darker pink on hover */
 }
 
-/* Navigation Links Section */
-.links {
-  padding: 20px;
-  text-align: center;
+/* Navigation Links */
+.navigation-links {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }
 
 .link-button {
-  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
   padding: 10px 20px;
-  margin: 10px;
-  font-size: 1em;
-  color: #fff;
-  background-color: #000; /* Black */
-  border: none;
-  border-radius: 5px;
   text-decoration: none;
-  font-weight: bold;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
 }
 
 .link-button:hover {
-  background-color: #333; /* Darker black */
+  background-color: #e0e0e0;
 }
 </style>
+

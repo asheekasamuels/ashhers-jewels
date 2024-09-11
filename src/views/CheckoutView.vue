@@ -30,7 +30,6 @@
   </div>
 </template>
 
-
 <script setup>
 import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
@@ -39,8 +38,8 @@ import { toast } from 'vue3-toastify'
 const store = useStore();
 const cart = computed(() => store.state.cart);
 const groupedCart = computed(() => {
-const grouped = cart.value.reduce((acc, item) => {
-const found = acc.find(i => i.prodID === item.prodID);
+  const grouped = cart.value.reduce((acc, item) => {
+    const found = acc.find(i => i.prodID === item.prodID);
     if (found) {
       found.quantity += 1;
     } else {
@@ -76,139 +75,101 @@ onMounted(() => {
 });
 </script>
 
-  
-  <style scoped>
-  .checkout-page {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    font-family: "Georgia", serif;
-    color: #000;
-  }
-  
-  .checkout-banner {
-    background-color: #f9e5e8; 
-    text-align: center;
-    padding: 40px 20px;
-    color: #000;
-  }
-  
-  .checkout-banner h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
-  
-  .checkout-banner p {
-    font-size: 18px;
-  }
-  
-  .order-summary, .payment-details {
-    background-color: #fff;
-    border: 1px solid #c0c0c0; 
-    padding: 30px;
-    margin: 20px 0;
-    border-radius: 8px;
-  }
-  
-  .order-summary h2, .payment-details h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .order-items {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .order-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .order-item img {
-    height: 100px;
-    margin-right: 20px;
-  }
-  
-  .item-details p {
-    margin: 0;
-  }
-  
-  .order-total {
-    margin-top: 20px;
-    text-align: right;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #c0c0c0;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .form-group input:focus {
-    outline: none;
-    border-color: #f9e5e8; 
-  }
-  .btn-submit {
-  background-color: #000;
-  color: #fff;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  width: 100%;
+<style scoped>
+.checkout-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Georgia", serif;
+  color: #333;
+}
+
+.checkout-banner {
+  background-color: #f9e5e8; /* Light pink background */
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-banner h1 {
+  color: #d88f94; /* Baby pink color */
+  font-size: 2.5rem;
+}
+
+.checkout-banner p {
+  color: #555; /* Darker gray for readability */
+}
+
+.order-summary {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 }
 
-.btn-submit:hover {
-  background-color: #f9e5e8; /* Baby pink hover */
-  color: #000;
+.order-summary h2 {
+  color: #d88f94; /* Baby pink for order summary heading */
+  margin-bottom: 20px;
 }
-  
-  .checkout-footer {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 16px;
-  }
-  
-  @media (max-width: 768px) {
-    .checkout-page {
-      padding: 20px;
-    }
-  
-    .checkout-banner h1 {
-      font-size: 28px;
-    }
-  
-    .checkout-banner p {
-      font-size: 16px;
-    }
-  
-    .order-item {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .order-total {
-      text-align: center;
-    }
-  }
-  </style>
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between order items */
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.item-image {
+  width: 80px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 4px; /* Optional: rounded corners for images */
+}
+
+.item-details {
+  flex-grow: 1;
+}
+
+.item-details h3 {
+  margin: 0;
+  color: #333; /* Dark text color for product names */
+}
+
+.order-total {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.btn-submit {
+  background-color: #d88f94; /* Baby pink for purchase button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 15px; /* Space above button */
+}
+
+.btn-submit:hover {
+  background-color: #c77b84; /* Darker pink on hover */
+}
+
+.checkout-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #777; /* Lighter text color */
+}
+</style>
+
   

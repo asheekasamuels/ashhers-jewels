@@ -11,7 +11,7 @@
         <div class="text-center">
           <AddUser />
         </div>
-        <div class="styled-table" >
+        <div class="styled-table">
           <table>
             <thead>
               <tr>
@@ -33,7 +33,7 @@
                 <td class="none">{{ user.userAge }}</td>
                 <td class="none">{{ user.userRole }}</td>
                 <td class="none">
-                  <button @click="delUser(user.userID)">Delete</button>
+                  <button class="btn-delete" @click="delUser(user.userID)">Delete</button>
                   <EditUser :user="user" />
                 </td>
               </tr>
@@ -67,11 +67,11 @@
                 <td class="none">{{ product.quantity }}</td>
                 <td class="none">{{ product.category }}</td>
                 <td>{{ product.amount }}</td>
-                <td class="none">
+                <td class="img-small">
                   <img :src="product.prodUrl" :alt="product.prodName" class="img-fluid" />
                 </td>
                 <td class="none">
-                  <button @click="delProduct(product.prodID)">Delete</button>
+                  <button class="btn-delete" @click="delProduct(product.prodID)">Delete</button>
                   <EditProduct :product="product" />
                 </td>
               </tr>
@@ -90,8 +90,8 @@
 <script setup>
 import { onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
-import AddUser from '@/components/AddUser.vue'
-import AddProduct from '@/components/AddProduct.vue'
+import AddUser from '@/components/AddUser.vue';
+import AddProduct from '@/components/AddProduct.vue';
 import EditUser from '@/components/EditUser.vue';
 import EditProduct from '@/components/EditProduct.vue';
 
@@ -116,183 +116,112 @@ const delProduct = (prodID) => {
 
 <style scoped>
 .admin-page {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: "Georgia", serif;
-  color: #000;
+  color: #333;
 }
 
 .admin-banner {
-  background-color: #f9e5e8;
+  background-color: #f9e5e8; /* Light pink background */
   text-align: center;
   padding: 40px 20px;
-  color: #000;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .admin-banner h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
+  color: #d88f94; /* Baby pink color */
+  font-size: 2.5rem;
 }
 
 .admin-banner p {
-  font-size: 18px;
+  color: #555; /* Lighter text color */
 }
 
 .tables-section {
+  margin-top: 20px;
   display: flex;
-  flex-direction: column; /* Stack tables vertically on smaller screens */
-  align-items: center; /* Center the containers horizontally */
-  margin: 40px 0;
+  flex-direction: column;
+  gap: 20px; /* Space between tables */
 }
 
 .table-container {
-  background-color: #fff;
-  border: 1px solid #c0c0c0;
-  padding: 30px;
-  margin-bottom: 20px;
+  background-color: #fff; /* White background for table containers */
+  padding: 20px;
   border-radius: 8px;
-  width: 100%; /* Make containers take full width */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: add shadow for depth */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .table-container h2 {
-  font-size: 24px;
   margin-bottom: 20px;
+  color: #d88f94; /* Baby pink color for headings */
 }
 
 .styled-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
-  justify-content: center;
+}
+
+.styled-table table {
+  width: 100%;
 }
 
 .styled-table th,
 .styled-table td {
-  padding: 12px 15px;
-  border: 1px solid #c0c0c0;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
 }
 
 .styled-table th {
-  background-color: #f3f3f3;
-  color: #000;
+  background-color: #f1f1f1; /* Light gray for table headers */
+  color: #333; /* Dark text color */
 }
 
-.styled-table tr:nth-child(even) {
-  background-color: #f8f8f8;
+.styled-table tbody tr:hover {
+  background-color: #f9e8e9; /* Light baby pink hover effect */
 }
 
-.styled-table tr:hover {
-  background-color: #ffe6f2;
-}
-
-.styled-table td {
-  color: #333;
-}
-
-.styled-table tr:hover td {
-  color: #000;
-}
-
-button {
-  background-color: #ff69b4;
+.btn-delete {
+  background-color: #d88f94; /* Baby pink for delete buttons */
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 4px;
+  padding: 8px 12px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #ff1493;
+.btn-delete:hover {
+  background-color: #c77b84; /* Darker pink on hover */
 }
 
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.img-small {
+  width: 100px; /* Default size for larger screens */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers the area without stretching */
 }
 
-.styled-table img {
-  max-width: 100px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+/* Media query for screens 700px and below */
+@media (max-width: 700px) {
+  .img-small {
+    width: 80px; /* Smaller size for medium screens */
+  }
+}
+
+/* Media query for screens 300px and below */
+@media (max-width: 300px) {
+  .img-small {
+    width: 60px; /* Even smaller size for small screens */
+  }
 }
 
 .admin-footer {
   text-align: center;
-  margin-top: 30px;
-  font-size: 16px;
+  margin-top: 20px;
+  color: #777; /* Lighter text color */
 }
-
-@media (max-width: 700px) {
-  .admin-page {
-    padding: 20px;
-  }
-
-  .admin-banner h1 {
-    font-size: 28px;
-  }
-
-  .admin-banner p {
-    font-size: 16px;
-  }
-
-  .table-container h2 {
-    font-size: 20px;
-  }
-
-  .styled-table th,
-  .styled-table td {
-    padding: 10px;
-  }
-
-  .styled-table th {
-    font-size: 14px;
-  }
-
-  .styled-table td {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 300px) {
-  .admin-page {
-    padding: 10px;
-  }
-
-  .admin-banner h1 {
-    font-size: 24px;
-  }
-
-  .admin-banner p {
-    font-size: 14px;
-  }
-
-  .table-container h2 {
-    font-size: 18px;
-  }
-
-  .styled-table th,
-  .styled-table td {
-    padding: 8px;
-  }
-
-  .styled-table th {
-    font-size: 12px;
-  }
-
-  .styled-table td {
-    font-size: 10px;
-  }
-
-  .admin-footer {
-    font-size: 12px;
-  }
-}
-
 
 </style>
