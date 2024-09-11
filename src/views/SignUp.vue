@@ -9,7 +9,7 @@
       <!-- Registration Form -->
       <div class="form-container">
         <h2>Register</h2>
-        <form @submit.prevent="register">
+        <form >
           <div class="form-group">
             <label for="first-name">First Name</label>
             <input type="text" id="first-name" placeholder="First Name" v-model="payload.firstName" required />
@@ -23,6 +23,14 @@
             <input type="number" id="age" placeholder="Age" v-model="payload.userAge" required />
           </div>
           <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="text" id="gender" placeholder="Gender" v-model="payload.gender" required />
+          </div>
+          <div class="form-group">
+            <label for="role">Role</label>
+            <input type="text" id="role" placeholder="Role" v-model="payload.userRole" required />
+          </div>
+          <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" placeholder="Email Address" v-model="payload.emailAdd" required />
           </div>
@@ -30,8 +38,12 @@
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Password" v-model="payload.userPass" required />
           </div>
+          <div class="form-group">
+            <label for="profile-image">Profile Image</label>
+            <input type="text" id="profile-image" placeholder="Profile Image" v-model="payload.userProfile" required />
+          </div>
 
-          <button type="submit" class="auth-btn">Register</button>
+          <button type="submit" @click.prevent="register" class="auth-btn">Register</button>
         </form>
       </div>
     </div>
@@ -43,20 +55,36 @@
 </template>
 
 <script setup>
+import store from '@/store';
 import { reactive } from 'vue';
-import { useStore } from 'vuex';
+// import { useStore } from 'vuex';
 
-const store = useStore();
+
 const payload = reactive({
-  firstName: '',
-  lastName: '',
-  userAge: '',
-  emailAdd: '',
-  userPass: '',
+  firstName : "",
+  lastName: "",
+  userAge: 0,
+  gender: "",
+  userRole: "",
+  emailAdd: "",
+  userPass: "",
+  userProfile: "https://codjoelmayer.github.io/projectImages/images/profile-Image.png"
 });
 
 function register() {
-  store.dispatch('register', payload);
+  
+  const cred = {
+    firstName : payload.firstName,
+    lastName: payload.lastName,
+    userAge: payload.userAge,
+    gender: payload.gender,
+    userRole: payload.userRole,
+    emailAdd: payload.emailAdd,
+    userPass: payload.userPass,
+    userProfile: payload.userProfile
+  };
+
+  store.dispatch('registerUser', cred);
 }
 </script>
   

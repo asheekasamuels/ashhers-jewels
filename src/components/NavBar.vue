@@ -45,28 +45,70 @@
     </nav>
 </template>
 
-
 <script setup>
 import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from 'vuex'
 
 const store = useStore();
 const cart = computed(() => store.state.cart);
+
+console.log('Initial cart state:', cart.value); // Add this line
+
 const cartCount = computed(() => {
-  return cart.value.reduce((sum, item) => sum + item.quantity, 0);
+  return cart.value.reduce((sum, item) => sum + item.count, 0);
 });
 </script>
 
 <style scoped>
-.cart-count {
-  background-color: #fff; /* White background for count */
-  color: #ff69b4; /* Baby pink text */
-  border-radius: 50%;
-  padding: 4px 8px;
-  font-size: 14px;
-  position: absolute;
-  top: -5px;
-  right: -10px;
-  font-weight: bold;
+.navbar {
+    background-color: #ffffff; /* White background for a clean look */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
+
+.navbar-brand img {
+    height: 50px; /* Adjust logo size */
+}
+
+.nav-link {
+    color: #333; /* Dark color for text */
+    font-weight: 500; /* Medium font weight for emphasis */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.nav-link:hover {
+    color: #d69a6c; /* Highlight color on hover */
+}
+
+.navbar-nav .nav-item {
+    margin: 0 15px; /* Spacing between nav items */
+}
+
+.cart-count {
+    background-color: #d69a6c; /* Cart count background color */
+    color: #ffffff; /* White text color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 2px 6px; /* Padding for better appearance */
+    margin-left: 5px; /* Space between text and count */
+}
+
+.userAccount {
+    margin-left: auto; /* Align user account links to the right */
+}
+
+.userAccount .nav-link {
+    color: #d69a6c; /* User account link color */
+}
+
+.userAccount .nav-link:hover {
+    color: #333; /* Change color on hover */
+}
+
+.navbar-toggler {
+    border-color: #d69a6c; /* Toggler border color */
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="%23d69a6c" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E'); /* Custom color for toggler icon */
+}
+
 </style>

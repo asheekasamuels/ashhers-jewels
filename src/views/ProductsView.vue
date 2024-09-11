@@ -76,8 +76,13 @@ onMounted(() => {
 const products = computed(() => store.state.products);
 const loading = computed(() => store.state.loading);
 
-const sortByPrice = () => store.dispatch('sortByPrice');
-const sortByName = () => store.dispatch('sortByName');
+const sortByPrice = () => {
+  store.dispatch('sortByPrice');
+};
+
+const sortByName = () => {
+  store.dispatch('sortByName');
+};
 
 const addToCart = (product) => {
   store.dispatch('addToCart', product);
@@ -107,6 +112,7 @@ const filteredProducts = computed(() => {
   return result;
 });
 </script>
+
 
 <style scoped>
 .products-page {

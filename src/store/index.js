@@ -1,9 +1,11 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import { toast } from 'vue3-toastify';
+import { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css';
 import { applyToken } from '../../src/service/AuthenticatedUser.js';
 import { useCookies } from 'vue3-cookies';
+import router from '@/router/index.js';
+// import { register } from 'register-service-worker';
 
 const { cookies } = useCookies();
 const apiURL = 'https://ashhers-jewels.onrender.com';
@@ -84,7 +86,6 @@ export default createStore({
         commit('setLoading', false);
       }
     },
-    
     async fetchUsers({ commit }) {
       commit('setLoading', true);
       try {
@@ -134,6 +135,7 @@ export default createStore({
     removeFromCart({ commit }, prodID) {
       commit('removeFromCart', prodID);
     },
+    
     async deleteUser({ commit, state }, userID) { 
       try {
         await axios.delete(`${apiURL}/users/${userID}`);
@@ -174,6 +176,46 @@ export default createStore({
           position: toast.POSITION.BOTTOM_CENTER,
         });
         commit('setError', e.message);
+      }
+    },
+    async registerUser(context, payload){
+      try {
+        const {token, msg} = await (await axios.post(`${apiURL}/users/register`, payload)).data;
+        if (token) {
+          console.log(msg);
+          
+          toast.success(`Added new user. Thank you😎`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          });
+
+          router.push({name : 'products'})
+        }
+      } catch (error) {
+        toast.error(error.message, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        })
+      }
+    },
+    async login(context, payload) {
+      try {
+        const {token, result, msg} = await (await axios.post(`${apiURL}/users/login`, payload)).data;
+        
+        if (result) {
+          console.log(token);
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          });
+
+          router.push({name : 'products'})
+        }
+      } catch (error) {
+        toast.error(error.message, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        })
       }
     },
   },

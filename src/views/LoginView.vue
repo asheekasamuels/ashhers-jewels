@@ -9,7 +9,7 @@
         <!-- Login Form -->
         <div class="form-container">
           <h2>Login</h2>
-          <form class="form" @submit.prevent="login">
+          <form class="form">
             <div class="form-group">
               <label for="login-email">Email</label>
               <input type="email" class="form-control" placeholder="Email" v-model="payload.emailAdd" pattern="^[A-Za-z0-9]+@[a-z0-9]+\.[a-z]{2,4}$" required />
