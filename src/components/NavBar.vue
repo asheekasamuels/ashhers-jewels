@@ -58,6 +58,7 @@
   
   <style scoped>
   /* Navbar container */
+  
   .navbar {
     background-color: white;
     padding: 10px 20px; /* Reduced padding */

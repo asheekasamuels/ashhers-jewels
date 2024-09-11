@@ -3,9 +3,6 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
-        <video autoplay muted loop class="hero-video">
-          <source src="" type="video/mp4" />
-        </video>
         <div class="overlay"></div>
         <h1>Ashhers Jewels</h1>
         <p>
@@ -63,6 +60,11 @@ function goToCategory(category) {
 
 <style scoped>
 /* Hero Section */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .hero {
   position: relative;
   height: 80vh;
@@ -70,14 +72,6 @@ function goToCategory(category) {
   align-items: center;
   justify-content: center;
   background-color: #f9f9f9;
-}
-
-.hero-video {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
 }
 
 .overlay {

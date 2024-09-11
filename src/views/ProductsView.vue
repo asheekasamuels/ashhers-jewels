@@ -262,4 +262,83 @@ const filteredProducts = computed(() => {
   margin-top: 40px;
   color: #777; /* Lighter text color */
 }
+
+/* Media Queries for 700px */
+@media (max-width: 700px) {
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-category {
+    width: 100%;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .search-input,
+  .category-btn {
+    width: 100%;
+  }
+
+  .sort-buttons {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .products-banner h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Media Queries for 300px */
+@media (max-width: 300px) {
+  .products-page {
+    padding: 20px 10px;
+  }
+
+  .products-banner {
+    padding: 20px 10px;
+  }
+
+  .products-banner h1 {
+    font-size: 1.5rem;
+  }
+
+  .options {
+    flex-direction: column;
+  }
+
+  .search-category {
+    width: 100%;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .search-input,
+  .category-btn,
+  .sort-buttons button {
+    width: 100%;
+  }
+
+  .sort-buttons {
+    margin-top: 10px;
+    flex-direction: column;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .product-card {
+    padding: 10px;
+  }
+}
 </style>

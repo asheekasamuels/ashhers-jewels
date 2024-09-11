@@ -213,8 +213,6 @@ export default createStore({
         });
       }
     },
-    
-    // New async actions
     async addProduct({ commit, state }, payload) {
       try {
         const response = await axios.post(`${apiURL}/products`, payload);
