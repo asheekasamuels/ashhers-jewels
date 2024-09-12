@@ -9,7 +9,7 @@
       <div class="table-container">
         <h2>User Table</h2>
         <div class="text-center">
-          <AddUser />
+          <!-- <AddUser /> -->
         </div>
         <div class="styled-table">
           <table>
@@ -90,7 +90,7 @@
 <script setup>
 import { onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
-import AddUser from '@/components/AddUser.vue';
+// import AddUser from '@/components/AddUser.vue';
 import AddProduct from '@/components/AddProduct.vue';
 import EditUser from '@/components/EditUser.vue';
 import EditProduct from '@/components/EditProduct.vue';
@@ -116,28 +116,27 @@ const delProduct = (prodID) => {
 
 <style scoped>
 .admin-page {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: "Georgia", serif;
-  color: #333;
+  color: #000;
 }
 
 .admin-banner {
-  background-color: #f9e5e8; /* Light pink background */
+  background-color: #f9e5e8; 
   text-align: center;
   padding: 40px 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: #000;
 }
 
 .admin-banner h1 {
-  color: #d88f94; /* Baby pink color */
-  font-size: 2.5rem;
+  color: #333; /* Dark text color */
+  font-size: 2rem;
 }
 
 .admin-banner p {
-  color: #555; /* Lighter text color */
+  color: #777; /* Lighter text color */
 }
 
 .tables-section {
@@ -199,7 +198,7 @@ const delProduct = (prodID) => {
 }
 
 .img-small {
-  width: 100px; /* Default size for larger screens */
+  width: 50px; /* Default size for larger screens */
   height: auto; /* Maintain aspect ratio */
   object-fit: cover; /* Ensure the image covers the area without stretching */
 }

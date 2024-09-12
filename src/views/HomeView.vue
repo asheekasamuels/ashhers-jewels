@@ -32,7 +32,7 @@
       <div class="promo-item">
         <h3>Register to Ashhers Jewels Club</h3>
         <p>Become a club member and enjoy exclusive offers and promotions. Get 10% off your first purchase!</p>
-        <a href="/join" class="promo-link">JOIN NOW</a>
+        <a href="/signup" class="promo-link">JOIN NOW</a>
       </div>
       <div class="promo-item">
         <h3>Explore Our Latest Collections</h3>
@@ -84,10 +84,30 @@ const categories = [
     name: "Earrings",
     image: "https://www.pandorashop.co.za/media/catalog/product/l/o/low_292549c01_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
   },
+  {
+    name: "Necklaces",
+    image: "https://www.pandorashop.co.za/media/catalog/product/m/e/medium_q224_d_pdp_model_styled_38_1x1_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
+  },
+  {
+    name: "Rings",
+    image: "https://www.pandorashop.co.za/media/catalog/product/q/2/q224_d_pdp_product_styled_37_1x1_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
+  },
+  {
+    name: "Earrings",
+    image: "https://www.pandorashop.co.za/media/catalog/product/l/o/low_292407c01_abc123_model_ecom_01_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
+  },
+  {
+    name: "Bracelets",
+    image: "https://www.pandorashop.co.za/media/catalog/product/5/9/592645c01_abc123_model_ecom_02_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
+  },
+  {
+    name: "Rings",
+    image: "https://www.pandorashop.co.za/media/catalog/product/m/e/medium_q124_b_pdp_model_single_07_1x1_rgb.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover",
+  },
 ];
 
 const currentSlide = ref(0);
-const totalSlides = Math.ceil(categories.length / 2); // Number of slide pairs
+const totalSlides = Math.ceil(categories.length / 2); 
 
 function nextSlide() {
   currentSlide.value = (currentSlide.value + 1) % totalSlides;
@@ -106,19 +126,23 @@ function prevSlide() {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f9f9f9;
+  background-image: url('file:///C:/Users/Student/Downloads/hero1.webp'); 
+  background-size: cover;
+  background-position: center; 
 }
 
 .hero-content {
   color: black;
   text-align: center;
+  position: relative; 
+  z-index: 1; 
 }
 
 .hero-content h1 {
   font-family: "Georgia", serif;
   font-size: 3rem;
   font-weight: bold;
-  color: #d88f94; /* Baby pink */
+  color: #d88f94; 
   margin-bottom: 20px;
 }
 
@@ -129,7 +153,7 @@ function prevSlide() {
 }
 
 .cta-button {
-  background-color: #d88f94; /* Baby pink */
+  background-color: #d88f94; 
   color: white;
   padding: 10px 20px;
   border: none;
@@ -142,23 +166,64 @@ function prevSlide() {
 /* Carousel */
 .carousel-container {
   position: relative;
-  width: 100%;
+  width: 70%; 
   overflow: hidden;
+  margin: 0 auto; 
 }
 
 .carousel {
   display: flex;
   transition: transform 0.5s ease;
   width: calc(100% * (100 / 50));
+  padding: 30px;
+}
+/* Carousel Controls */
+.carousel-control {
+  background-color: #d88f94; 
+  color: white; 
+  border: none; 
+  border-radius: 50%; 
+  width: 40px; 
+  height: 40px;
+  font-size: 1.5rem; 
+  cursor: pointer; 
+  position: absolute; 
+  top: 50%;
+  transform: translateY(-50%); 
+  z-index: 2; 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.carousel-control.prev {
+  left: 10px; 
+}
+
+.carousel-control.next {
+  right: 10px; 
+}
+
+/* Hover effect for carousel controls */
+.carousel-control:hover {
+  background-color: #c77b86; 
+  transform: translateY(-50%) scale(1.1); 
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .carousel-control {
+    width: 30px; 
+    height: 30px;
+    font-size: 1.2rem; 
+  }
 }
 
 .category {
-  width: 50%;
+  width: 50%; 
   text-align: center;
 }
 
 .category-image {
-  width: 80%;
+  width: 90%; 
   height: auto;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -195,12 +260,12 @@ function prevSlide() {
 .promo-link {
   font-family: "Georgia", serif;
   font-size: 1.1rem;
-  color: #d88f94; /* Baby pink */
+  color: #d88f94; 
   text-decoration: none;
 }
 
 .promo-link:hover {
-  color: #c77b86; /* Darker pink */
+  color: #c77b86; 
 }
 
 /* Newsletter Section */
@@ -237,7 +302,7 @@ function prevSlide() {
 }
 
 .newsletter-submit {
-  background-color: #d88f94; /* Baby pink */
+  background-color: #d88f94;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -248,7 +313,7 @@ function prevSlide() {
 }
 
 .newsletter-submit:hover {
-  background-color: #c77b86; /* Darker pink */
+  background-color: #c77b86; 
 }
 
 /* Navigation Links */

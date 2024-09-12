@@ -38,19 +38,18 @@
           class="product-card"
         >
           <template #cardHeader>
-            <img
-              :src="product.prodUrl"
-              loading="lazy"
-              class="product-image"
-              :alt="product.prodName"
-            />
+            <router-link :to="{ name: 'SingleView', params: { id: product.prodID } }">
+              <img
+                :src="product.prodUrl"
+                loading="lazy"
+                class="product-image"
+                :alt="product.prodName"
+              />
+            </router-link>
           </template>
           <template #cardBody>
             <h5 class="card-title">{{ product.prodName }}</h5>
             <p class="product-price">R{{ product.amount }}</p>
-            <button @click="goToProduct(product)" class="toggle-description-btn">
-              View More
-            </button>
             <button @click="addToCart(product)" class="add-to-cart-btn">
               <i class="fas fa-shopping-cart"></i>
             </button>
@@ -74,14 +73,14 @@
 <script setup>
 import { useStore } from 'vuex';
 import { computed, ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
 import SpinnerComp from '@/components/SpinnerComp.vue';
 import Card from '@/components/Card.vue';
 
 const store = useStore();
 const searchQuery = ref('');
 const selectedCategory = ref('All'); // Default to "All"
-const router = useRouter();
+// const router = useRouter();
 
 onMounted(() => {
   store.dispatch('fetchProducts');
@@ -100,10 +99,6 @@ const sortByName = () => {
 
 const addToCart = (product) => {
   store.dispatch('addToCart', product);
-};
-
-const goToProduct = (product) => {
-  router.push({ name: 'SingleView', params: { id: product.prodID } });
 };
 
 const filteredProducts = computed(() => {
@@ -210,7 +205,6 @@ const filteredProducts = computed(() => {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 45px; /* Space between product cards */
   margin-top: 20px;
-
 }
 
 .product-card {
@@ -233,21 +227,13 @@ const filteredProducts = computed(() => {
 }
 
 .card-title {
-  margin: 10px 0;
+  margin: 9px 0;
   color: #333; /* Dark text color for product names */
 }
 
 .product-price {
   font-weight: bold;
   color: #d88f94; /* Baby pink for prices */
-}
-
-.toggle-description-btn {
-  background-color: transparent;
-  border: none;
-  color: #d88f94; /* Baby pink for "View More" */
-  cursor: pointer;
-  margin-top: 10px; /* Space above button */
 }
 
 .add-to-cart-btn {
