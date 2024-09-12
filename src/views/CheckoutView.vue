@@ -33,47 +33,53 @@
 <script setup>
 import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
-import { toast } from 'vue3-toastify'
+import { toast } from 'vue3-toastify';
 
 const store = useStore();
 const cart = computed(() => store.state.cart);
+
+// Change 'quantity' to 'itemCount'
 const groupedCart = computed(() => {
   const grouped = cart.value.reduce((acc, item) => {
     const found = acc.find(i => i.prodID === item.prodID);
     if (found) {
-      found.quantity += 1;
+      found.itemCount += 1;  // Increment itemCount instead of quantity
     } else {
-      acc.push({ ...item, quantity: 1 });
+      acc.push({ ...item, itemCount: 1 });  // Initialize with itemCount
     }
     return acc;
   }, []);
   return grouped;
 });
 
+// Calculate the total amount using 'itemCount'
 const totalAmount = computed(() => {
-  return groupedCart.value.reduce((sum, item) => sum + (item.amount * item.quantity), 0);
+  return groupedCart.value.reduce((sum, item) => sum + (item.amount * item.itemCount), 0);
 });
 
+// Handle purchase logic
 const handlePurchase = async () => {
   try {
     await store.dispatch('purchaseCart');
     toast.success('Successfully paid!', {
       autoClose: 2000,
-      position: toast.POSITION.BOTTOM_CENTER
+      position: toast.POSITION.BOTTOM_CENTER,
     });
-    store.commit('setCart', []);
+    store.commit('setCart', []);  // Clear the cart after purchase
   } catch (error) {
     toast.error(`Payment failed: ${error.message}`, {
       autoClose: 2000,
-      position: toast.POSITION.BOTTOM_CENTER
+      position: toast.POSITION.BOTTOM_CENTER,
     });
   }
 };
 
+// Fetch cart when component is mounted
 onMounted(() => {
   store.dispatch('fetchCart');
 });
 </script>
+
 
 <style scoped>
 .checkout-page {

@@ -13,15 +13,47 @@
       </div>
     </section>
 
-    <!-- Product Categories Section -->
+    <!-- Product Categories Carousel -->
     <section class="product-categories">
       <h2>Discover a World of Jewellery</h2>
-      <div class="categories-container">
-        <div class="category" v-for="(category, index) in categories" :key="index">
-          <img :src="category.image" :alt="category.name" class="category-image" />
-          <a @click.prevent="goToCategory(category.name.toLowerCase())" class="category-link">{{ category.name }}</a>
+      <div class="carousel-container">
+        <button @click="prevSlide" class="carousel-control prev">‹</button>
+        <div class="carousel" :style="{ transform: `translateX(-${currentSlide * 50}%)` }">
+          <div class="category" v-for="(category, index) in categories" :key="index">
+            <img :src="category.image" :alt="category.name" class="category-image" />
+          </div>
         </div>
+        <button @click="nextSlide" class="carousel-control next">›</button>
       </div>
+    </section>
+
+    <!-- Promotional Section -->
+    <section class="promo-section">
+      <div class="promo-item">
+        <h3>Register to Ashhers Jewels Club</h3>
+        <p>Become a club member and enjoy exclusive offers and promotions. Get 10% off your first purchase!</p>
+        <a href="/join" class="promo-link">JOIN NOW</a>
+      </div>
+      <div class="promo-item">
+        <h3>Explore Our Latest Collections</h3>
+        <p>Discover new arrivals that perfectly blend elegance and sophistication. Find your next statement piece.</p>
+        <a href="/products" class="promo-link">SHOP NOW</a>
+      </div>
+      <div class="promo-item">
+        <h3>Exclusive Jewellery Range</h3>
+        <p>Store our most cherished pieces in your luxurious jewellery. Keep your treasures safe and stylish.</p>
+        <a href="/products" class="promo-link">SHOP NOW</a>
+      </div>
+    </section>
+
+    <!-- Newsletter Subscription -->
+    <section class="newsletter-section">
+      <h3>Stay in the Loop</h3>
+      <p>Be the first to hear about new arrivals, exclusive promotions, and special events.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email address" class="newsletter-input" />
+        <button type="submit" class="newsletter-submit">Subscribe</button>
+      </form>
     </section>
 
     <!-- Navigation Links -->
@@ -33,6 +65,8 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 const categories = [
   {
     name: "Bracelets",
@@ -52,19 +86,20 @@ const categories = [
   },
 ];
 
-function goToCategory(category) {
-  window.location.href = `/products/${category}`
+const currentSlide = ref(0);
+const totalSlides = Math.ceil(categories.length / 2); // Number of slide pairs
 
+function nextSlide() {
+  currentSlide.value = (currentSlide.value + 1) % totalSlides;
+}
+
+function prevSlide() {
+  currentSlide.value = (currentSlide.value - 1 + totalSlides) % totalSlides;
 }
 </script>
 
 <style scoped>
 /* Hero Section */
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 .hero {
   position: relative;
   height: 80vh;
@@ -74,20 +109,9 @@ function goToCategory(category) {
   background-color: #f9f9f9;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 0;
-}
-
 .hero-content {
   color: black;
   text-align: center;
-  z-index: 1;
 }
 
 .hero-content h1 {
@@ -113,57 +137,118 @@ function goToCategory(category) {
   font-size: 1.2rem;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.3s ease;
 }
 
-.cta-button:hover {
-  background-color: #c77b86; /* Darker pink on hover */
+/* Carousel */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
-/* Product Categories Section */
-.product-categories {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.product-categories h2 {
-  font-family: "Georgia", serif;
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 40px;
-}
-
-.categories-container {
+.carousel {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 40px;
+  transition: transform 0.5s ease;
+  width: calc(100% * (100 / 50));
 }
 
 .category {
-  max-width: 240px;
+  width: 50%;
   text-align: center;
 }
 
 .category-image {
-  width: 100%;
+  width: 80%;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
 
-.category-link {
+/* Promotional Section */
+.promo-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+  background-color: #f0f0f0;
+}
+
+.promo-item {
+  max-width: 300px;
+  text-align: center;
+}
+
+.promo-item h3 {
   font-family: "Georgia", serif;
-  display: block;
-  margin-top: 15px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.promo-item p {
+  font-family: "Georgia", serif;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.promo-link {
+  font-family: "Georgia", serif;
+  font-size: 1.1rem;
   color: #d88f94; /* Baby pink */
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.category-link:hover {
-  color: #c77b86; /* Darker pink on hover */
+.promo-link:hover {
+  color: #c77b86; /* Darker pink */
+}
+
+/* Newsletter Section */
+.newsletter-section {
+  padding: 40px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.newsletter-section h3 {
+  font-family: "Georgia", serif;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.newsletter-section p {
+  font-family: "Georgia", serif;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+}
+
+.newsletter-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+}
+
+.newsletter-submit {
+  background-color: #d88f94; /* Baby pink */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter-submit:hover {
+  background-color: #c77b86; /* Darker pink */
 }
 
 /* Navigation Links */
@@ -181,11 +266,5 @@ function goToCategory(category) {
   text-decoration: none;
   border-radius: 4px;
   font-size: 1.1rem;
-  transition: background-color 0.3s ease;
-}
-
-.link-button:hover {
-  background-color: #e0e0e0;
 }
 </style>
-

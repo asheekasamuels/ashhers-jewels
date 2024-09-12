@@ -47,6 +47,71 @@ const routes = [
     name: 'signup',
     component: () => import('../views/SignUp.vue')
   },
+  {
+    path:'/privacy',
+    name: 'privacy',
+    component: () => import('../views/PrivacyView.vue')
+  },
+  {
+    path: '/terms-and-conditions',
+    name: 'TermsAndConditions',
+    component: () => import('../views/Ts&CsView.vue') 
+  },
+{
+  path: '/warranty-and-repairs',
+  name: 'WarrantyAndRepairs',
+  component: () => import('../views/Warranty&RepairsView.vue') 
+},
+{
+  path: '/loyalty-card',
+  name: 'LoyaltyCard',
+  component: () => import('../views/LoyaltyCard.vue')
+},
+{
+  path: '/jewels-club',
+  name: 'JewelsClub',
+  component: () => import('../views/JewelsClub.vue')
+},
+{
+  path: '/company-info',
+  name: 'CompanyInfo',
+  component: () => import('../views/CompanyInfo.vue')
+},
+{
+  path: '/store-locator',
+  name: 'StoreLocator',
+  component: () => import('../views/StoreLocator.vue')
+},
+{
+  path: '/delivery',
+  name: 'Delivery',
+  component: () => import('../views/DeliveryView.vue')
+},
+{
+  path: '/returns',
+  name: 'Returns',
+  component: () => import('../views/ReturnsView.vue')
+},
+{
+  path: '/size-guide',
+  name: 'SizeGuide',
+  component: () => import('../views/SizeGuide.vue')
+},
+{
+  path: '/care-instructions',
+  name: 'CareInstructions',
+  component: () => import('../views/CareInstructions.vue')
+},
+{
+  path: '/promotions',
+  name: 'Promotions',
+  component: () => import('../views/PromotionsView.vue')
+},
+{
+  path: '/FAQ',
+  name: 'FAQ',
+  component: () => import('../views/FAQView.vue')
+}
 
   // {
   //   path: '/product',

@@ -22,24 +22,6 @@
         <button type="submit" class="btn-submit">Send Message</button>
       </form>
     </div>
-    <div class="contact-info">
-      <div class="map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13233.069675818386!2d18.4926986!3d-33.9856643!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc433bedd50e81%3A0x9c746d268c8e0ad9!2sLife%20Choices!5e0!3m2!1sen!2sza!4v1694259988434!5m2!1sen!2sza"
-          width="100%"
-          height="300"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
-      </div>
-      <h2>Our Contact Details</h2>
-      <p>Email: support@ashhersjewels.com</p>
-      <p>Phone: +123 456 7890</p>
-      <p>Address: 314 Imam Haron Road, Lansdowne</p>
-      <p>Business Hours: 9AM - 4PM</p>
-    </div>
   </div>
 </template>
 
@@ -125,26 +107,6 @@ const submitForm = () => {
 
 .btn-submit:hover {
   background-color: #c77b84; /* Darker pink on hover */
-}
-
-.contact-info {
-  margin-top: 20px;
-}
-
-.contact-info h2 {
-  color: #d88f94; /* Baby pink for contact details heading */
-  margin-bottom: 10px;
-}
-
-.contact-info p {
-  margin: 5px 0;
-  color: #555; /* Darker gray for text */
-}
-
-.map {
-  margin-bottom: 20px;
-  border-radius: 8px;
-  overflow: hidden; /* Prevents overflow from iframe */
 }
 </style>
 

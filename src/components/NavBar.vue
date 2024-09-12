@@ -14,7 +14,7 @@
           <router-link class="nav-link" to="/checkout">Checkout
             <span v-if="cartCount" class="cart-count">{{ cartCount }}</span>
           </router-link>
-          <router-link class="nav-link" to="/reachUs">Reach Us</router-link>
+          <!-- <router-link class="nav-link" to="/reachUs">Reach Us</router-link> -->
           <router-link class="nav-link" to="/admin">Admin</router-link>
         </div>
         

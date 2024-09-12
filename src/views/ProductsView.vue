@@ -134,6 +134,9 @@ const filteredProducts = computed(() => {
   padding: 40px 20px;
   font-family: "Georgia", serif;
   color: #333;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .products-banner {
@@ -206,6 +209,8 @@ const filteredProducts = computed(() => {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 45px; /* Space between product cards */
+  margin-top: 20px;
+
 }
 
 .product-card {
@@ -214,6 +219,8 @@ const filteredProducts = computed(() => {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden; /* Rounded corners for cards */
   transition: transform 0.3s; /* Smooth scale effect on hover */
+  text-align: center;
+  padding: 20px;
 }
 
 .product-card:hover {
