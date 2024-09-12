@@ -116,27 +116,28 @@ const delProduct = (prodID) => {
 
 <style scoped>
 .admin-page {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: "Georgia", serif;
-  color: #000;
+  color: #333;
 }
 
 .admin-banner {
-  background-color: #f9e5e8; 
+  background-color: #f9e5e8; /* Light pink background */
   text-align: center;
   padding: 40px 20px;
-  color: #000;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .admin-banner h1 {
-  color: #333; /* Dark text color */
-  font-size: 2rem;
+  color: #d88f94; /* Baby pink color */
+  font-size: 2.5rem;
 }
 
 .admin-banner p {
-  color: #777; /* Lighter text color */
+  color: #555;  /* Lighter text color */
 }
 
 .tables-section {
