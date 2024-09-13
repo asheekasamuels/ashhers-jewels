@@ -55,7 +55,7 @@ function addToCart(prodID) {
 }
 
 .product-details {
-  background-color: #fff; /* White background for product details */
+  background-color: #fff; 
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -65,7 +65,7 @@ function addToCart(prodID) {
 }
 
 .product-details h1 {
-  color: #d88f94; /* Baby pink color for product title */
+  color: #d88f94; 
   font-size: 2.5rem;
   margin-bottom: 20px;
 }
@@ -92,7 +92,7 @@ function addToCart(prodID) {
 }
 
 .add-to-cart-btn {
-  background-color: #d88f94; /* Baby pink button */
+  background-color: #d88f94; 
   color: white;
   padding: 10px 15px;
   border: none;
@@ -103,7 +103,7 @@ function addToCart(prodID) {
 }
 
 .add-to-cart-btn:hover {
-  background-color: #c77b86; /* Darker pink on hover */
+  background-color: #c77b86; 
 }
 
 .loading-container {

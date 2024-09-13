@@ -74,7 +74,7 @@ export default {
 }
 
 .about-banner {
-  background-color: #f9e5e8; /* Light pink background */
+  background-color: #f9e5e8;
   text-align: center;
   padding: 40px 20px;
   border-radius: 8px;
@@ -82,12 +82,12 @@ export default {
 }
 
 .about-banner h1 {
-  color: #d88f94; /* Baby pink color */
+  color: #d88f94;
   font-size: 2.5rem;
 }
 
 .about-banner p {
-  color: #555; /* Darker gray for readability */
+  color: #555;
 }
 
 .story, .founders {
@@ -95,7 +95,7 @@ export default {
 }
 
 .story h2, .founders h2 {
-  color: #d88f94; /* Baby pink for section headers */
+  color: #d88f94;
   font-size: 2rem;
   margin-bottom: 15px;
 }
@@ -116,19 +116,19 @@ export default {
 }
 
 .founder-photo {
-  border-radius: 50%; /* Circular image */
+  border-radius: 50%;
   width: 120px;
   height: 120px;
-  object-fit: cover; /* Maintain aspect ratio */
-  margin-right: 20px; /* Space between image and text */
+  object-fit: cover;
+  margin-right: 20px;
 }
 
 .founder-info h3 {
   margin: 0;
-  color: #333; /* Darker text color for founder's name */
+  color: #333;
 }
 
 .founder-info {
-  flex: 1; /* Take up remaining space */
+  flex: 1;
 }
 </style>

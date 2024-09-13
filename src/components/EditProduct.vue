@@ -137,35 +137,31 @@
   };
   </script>
 
-  <style scoped>
-  /* Button styles */
+<style scoped>
 .btn-edit {
   background-color: #ff69b4;
-  color: white; 
-  border: none; /* Remove default border */
-  padding: 10px 15px; /* Padding for a better button size */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Font size */
-  transition: background-color 0.3s ease; /* Smooth transition */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .btn-edit:hover {
-  background-color: #ff1493; /* Darker pink on hover */
+  background-color: #ff1493;
 }
 
-/* Modal header styles */
 .modal-header {
-  background-color: #f9e5e8; /* Baby pink */
-  border-bottom: 1px solid #c0c0c0; /* Silver border */
+  background-color: #f9e5e8;
+  border-bottom: 1px solid #c0c0c0;
 }
 
-/* Modal body styles */
 .modal-body {
   padding: 20px;
 }
 
-/* Input field styles */
 .inputs {
   margin-bottom: 15px;
 }
@@ -174,43 +170,39 @@
   font-weight: bold;
 }
 
-/* Form control styles */
 .form-control {
-  border: 1px solid #c0c0c0; /* Silver border */
-  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #c0c0c0;
+  border-radius: 5px;
 }
 
-/* Reset button styles */
 .btn-reset {
-  background-color: #ccc; /* Gray */
-  color: #000; /* Black text */
-  border: none; /* Remove default border */
-  padding: 10px 15px; /* Padding for a better button size */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Font size */
-  margin-right: 10px; /* Space between buttons */
-  transition: background-color 0.3s ease; /* Smooth transition */
+  background-color: #ccc;
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
 }
 
 .btn-reset:hover {
-  background-color: #b3b3b3; /* Darker gray on hover */
+  background-color: #b3b3b3;
 }
 
-/* Save button styles */
 .btn-save {
-  background-color: #ff69b4; /* Hot pink */
-  color: white; /* Text color */
-  border: none; /* Remove default border */
-  padding: 10px 15px; /* Padding for a better button size */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Font size */
-  transition: background-color 0.3s ease; /* Smooth transition */
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .btn-save:hover {
-  background-color: #ff1493; /* Darker pink on hover */
+  background-color: #ff1493;
 }
-
-  </style>
+</style>

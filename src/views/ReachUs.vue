@@ -41,7 +41,7 @@ const submitForm = () => {
 }
 
 .banner {
-  background-color: #f9e5e8; /* Light pink background */
+  background-color: #f9e5e8;
   text-align: center;
   padding: 40px 20px;
   border-radius: 8px;
@@ -49,12 +49,12 @@ const submitForm = () => {
 }
 
 .banner h1 {
-  color: #d88f94; /* Baby pink color */
+  color: #d88f94;
   font-size: 2.5rem;
 }
 
 .banner p {
-  color: #555; /* Darker gray for readability */
+  color: #555;
 }
 
 .contact-form {
@@ -66,7 +66,7 @@ const submitForm = () => {
 }
 
 .contact-form h2 {
-  color: #d88f94; /* Baby pink color for form heading */
+  color: #d88f94;
   margin-bottom: 20px;
 }
 
@@ -77,7 +77,7 @@ const submitForm = () => {
 .form-group label {
   display: block;
   margin-bottom: 5px;
-  color: #333; /* Dark text color */
+  color: #333;
 }
 
 .form-group input,
@@ -91,12 +91,12 @@ const submitForm = () => {
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #d88f94; /* Change border color on focus */
-  outline: none; /* Remove outline */
+  border-color: #d88f94;
+  outline: none;
 }
 
 .btn-submit {
-  background-color: #d88f94; /* Baby pink for submit button */
+  background-color: #d88f94;
   color: white;
   border: none;
   border-radius: 4px;
@@ -106,7 +106,6 @@ const submitForm = () => {
 }
 
 .btn-submit:hover {
-  background-color: #c77b84; /* Darker pink on hover */
+  background-color: #c77b84;
 }
 </style>
-

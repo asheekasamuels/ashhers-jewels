@@ -4,10 +4,10 @@
     <div class="footer-content container-fluid">
       <div class="row justify-content-center">
         <div class="footer-links">
-          <!-- About Us Links -->
           <div class="footer-column">
             <h4>About Us</h4>
             <ul>
+              <li><a href="/about">About Us</a></li>
               <li><a href="/privacy">Privacy Policy</a></li>
               <li><a href="/terms-and-conditions">Terms and Conditions</a></li>
               <li><a href="/reachUs">Contact Us</a></li>
@@ -15,7 +15,6 @@
             </ul>
           </div>
 
-          <!-- About Global Links -->
           <div class="footer-column">
             <h4>About Ashhers Jewels Global</h4>
             <ul>
@@ -26,7 +25,6 @@
             </ul>
           </div>
 
-          <!-- Customer Service Links -->
           <div class="footer-column">
             <h4>Customer Service</h4>
             <ul>
@@ -39,7 +37,6 @@
             </ul>
           </div>
 
-          <!-- Follow Us Links -->
           <div class="footer-column follow-us">
             <h4>Follow Us</h4>
             <div class="social-icons">
@@ -72,7 +69,7 @@ export default {
 
 <style scoped>
 .footer {
-  background-color: #f9e5e8; /* Light pink background */
+  background-color: #f9e5e8;
   padding: 20px 0;
   text-align: center;
   border-top: 1px solid #e0e0e0;
@@ -89,25 +86,25 @@ export default {
 
 .footer-links {
   display: flex;
-  justify-content: center; /* Center the footer columns */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  width: 100%; /* Full width */
-  margin-bottom: 15px; /* Space below the links */
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 .footer-column {
   flex: 1;
-  min-width: 150px; /* Minimum width for each column */
-  padding: 0 10px; /* Space inside columns */
-  text-align: center; /* Center text in columns */
+  min-width: 150px;
+  padding: 0 10px;
+  text-align: center;
 }
 
 .footer-column h4 {
-  color: #d88f94; /* Baby pink for headings */
+  color: #d88f94;
 }
 
 .footer-column ul {
-  list-style-type: none; /* Remove bullet points */
+  list-style-type: none;
   padding: 0;
 }
 
@@ -116,54 +113,52 @@ export default {
 }
 
 .footer-column a {
-  color: #333; /* Dark text color for links */
-  text-decoration: none; /* Remove underline */
+  color: #333;
+  text-decoration: none;
 }
 
 .footer-column a:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }
 
 .follow-us .social-icons {
   display: flex;
-  justify-content: center; /* Center social icons */
-  gap: 10px; /* Space between icons */
+  justify-content: center;
+  gap: 10px;
 }
 
 .follow-us .social-icons a {
-  color: #333; /* Dark color for icons */
+  color: #333;
 }
 
 .follow-us .social-icons a:hover {
-  color: #d88f94; /* Baby pink on hover */
+  color: #d88f94;
 }
 
 .footer-text {
   font-size: 1.2rem;
   color: #333;
-  margin-top: 15px; /* Space above footer text */
+  margin-top: 15px;
 }
 
 .footer-text span {
   font-weight: bold;
-  color: #d88f94; /* Baby pink for the year */
+  color: #d88f94;
 }
 
-/* Media Queries for responsive design */
 @media (max-width: 600px) {
   .footer-links {
-    flex-direction: column; /* Stack columns on small screens */
-    align-items: center; /* Center items */
+    flex-direction: column;
+    align-items: center;
   }
 
   .footer-column {
-    min-width: 100%; /* Full width for each column */
-    margin-bottom: 20px; /* Space below each column */
+    min-width: 100%;
+    margin-bottom: 20px;
   }
 
   .footer-text {
-    margin-top: 20px; /* Space above footer text */
+    margin-top: 20px;
   }
 }
 </style>
-

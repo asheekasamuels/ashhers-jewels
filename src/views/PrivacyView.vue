@@ -104,7 +104,7 @@
   }
   
   h1, h2 {
-    color: #d88f94; /* Baby pink heading color */
+    color: #d88f94; 
   }
   
   h1 {
@@ -131,7 +131,7 @@
   }
   
   a {
-    color: #d88f94; /* Baby pink for links */
+    color: #d88f94; 
     text-decoration: none;
   }
   

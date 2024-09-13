@@ -79,7 +79,7 @@ import Card from '@/components/Card.vue';
 
 const store = useStore();
 const searchQuery = ref('');
-const selectedCategory = ref('All'); // Default to "All"
+const selectedCategory = ref('All'); 
 // const router = useRouter();
 
 onMounted(() => {
@@ -135,7 +135,7 @@ const filteredProducts = computed(() => {
 }
 
 .products-banner {
-  background-color: #f9e5e8; /* Light pink background */
+  background-color: #f9e5e8;
   text-align: center;
   padding: 40px 20px;
   border-radius: 8px;
@@ -143,12 +143,12 @@ const filteredProducts = computed(() => {
 }
 
 .products-banner h1 {
-  color: #d88f94; /* Baby pink color */
+  color: #d88f94;
   font-size: 2.5rem;
 }
 
 .products-banner p {
-  color: #555; /* Darker gray for readability */
+  color: #555;
 }
 
 .container {
@@ -164,14 +164,14 @@ const filteredProducts = computed(() => {
 
 .search-category {
   display: flex;
-  gap: 10px; /* Space between search and dropdown */
+  gap: 10px;
 }
 
 .search-input {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  width: 250px; /* Fixed width for search input */
+  width: 250px;
 }
 
 .category-btn {
@@ -183,11 +183,11 @@ const filteredProducts = computed(() => {
 
 .sort-buttons {
   display: flex;
-  gap: 10px; /* Space between sort buttons */
+  gap: 10px;
 }
 
 .sort-btn {
-  background-color: #d88f94; /* Baby pink for sort buttons */
+  background-color: #d88f94;
   color: white;
   border: none;
   border-radius: 4px;
@@ -197,13 +197,13 @@ const filteredProducts = computed(() => {
 }
 
 .sort-btn:hover {
-  background-color: #c77b84; /* Darker pink on hover */
+  background-color: #c77b84;
 }
 
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 45px; /* Space between product cards */
+  gap: 45px;
   margin-top: 20px;
 }
 
@@ -211,14 +211,14 @@ const filteredProducts = computed(() => {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Rounded corners for cards */
-  transition: transform 0.3s; /* Smooth scale effect on hover */
+  overflow: hidden;
+  transition: transform 0.3s;
   text-align: center;
   padding: 20px;
 }
 
 .product-card:hover {
-  transform: scale(1.02); /* Slightly scale up on hover */
+  transform: scale(1.02);
 }
 
 .product-image {
@@ -228,16 +228,16 @@ const filteredProducts = computed(() => {
 
 .card-title {
   margin: 9px 0;
-  color: #333; /* Dark text color for product names */
+  color: #333;
 }
 
 .product-price {
   font-weight: bold;
-  color: #d88f94; /* Baby pink for prices */
+  color: #d88f94;
 }
 
 .add-to-cart-btn {
-  background-color: #d88f94; /* Baby pink for add to cart button */
+  background-color: #d88f94;
   color: white;
   border: none;
   border-radius: 4px;
@@ -247,16 +247,15 @@ const filteredProducts = computed(() => {
 }
 
 .add-to-cart-btn:hover {
-  background-color: #c77b84; /* Darker pink on hover */
+  background-color: #c77b84;
 }
 
 .products-footer {
   text-align: center;
   margin-top: 40px;
-  color: #777; /* Lighter text color */
+  color: #777;
 }
 
-/* Media Queries for 700px */
 @media (max-width: 700px) {
   .options {
     flex-direction: column;
@@ -290,7 +289,6 @@ const filteredProducts = computed(() => {
   }
 }
 
-/* Media Queries for 300px */
 @media (max-width: 300px) {
   .products-page {
     padding: 20px 10px;

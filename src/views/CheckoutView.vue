@@ -37,27 +37,21 @@ import { toast } from 'vue3-toastify';
 
 const store = useStore();
 const cart = computed(() => store.state.cart);
-
-// Change 'quantity' to 'itemCount'
 const groupedCart = computed(() => {
   const grouped = cart.value.reduce((acc, item) => {
     const found = acc.find(i => i.prodID === item.prodID);
     if (found) {
-      found.itemCount += 1;  // Increment itemCount instead of quantity
+      found.itemCount += 1;
     } else {
-      acc.push({ ...item, itemCount: 1 });  // Initialize with itemCount
+      acc.push({ ...item, itemCount: 1 });
     }
     return acc;
   }, []);
   return grouped;
 });
-
-// Calculate the total amount using 'itemCount'
 const totalAmount = computed(() => {
   return groupedCart.value.reduce((sum, item) => sum + (item.amount * item.itemCount), 0);
 });
-
-// Handle purchase logic
 const handlePurchase = async () => {
   try {
     await store.dispatch('purchaseCart');
@@ -65,7 +59,7 @@ const handlePurchase = async () => {
       autoClose: 2000,
       position: toast.POSITION.BOTTOM_CENTER,
     });
-    store.commit('setCart', []);  // Clear the cart after purchase
+    store.commit('setCart', []);
   } catch (error) {
     toast.error(`Payment failed: ${error.message}`, {
       autoClose: 2000,
@@ -73,13 +67,10 @@ const handlePurchase = async () => {
     });
   }
 };
-
-// Fetch cart when component is mounted
 onMounted(() => {
   store.dispatch('fetchCart');
 });
 </script>
-
 
 <style scoped>
 .checkout-page {
@@ -91,7 +82,7 @@ onMounted(() => {
 }
 
 .checkout-banner {
-  background-color: #f9e5e8; /* Light pink background */
+  background-color: #f9e5e8;
   text-align: center;
   padding: 40px 20px;
   border-radius: 8px;
@@ -99,12 +90,12 @@ onMounted(() => {
 }
 
 .checkout-banner h1 {
-  color: #d88f94; /* Baby pink color */
+  color: #d88f94;
   font-size: 2.5rem;
 }
 
 .checkout-banner p {
-  color: #555; /* Darker gray for readability */
+  color: #555;
 }
 
 .order-summary {
@@ -116,14 +107,14 @@ onMounted(() => {
 }
 
 .order-summary h2 {
-  color: #d88f94; /* Baby pink for order summary heading */
+  color: #d88f94;
   margin-bottom: 20px;
 }
 
 .order-items {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Space between order items */
+  gap: 15px;
 }
 
 .order-item {
@@ -138,7 +129,7 @@ onMounted(() => {
   width: 80px;
   height: auto;
   margin-right: 20px;
-  border-radius: 4px; /* Optional: rounded corners for images */
+  border-radius: 4px;
 }
 
 .item-details {
@@ -147,7 +138,7 @@ onMounted(() => {
 
 .item-details h3 {
   margin: 0;
-  color: #333; /* Dark text color for product names */
+  color: #333;
 }
 
 .order-total {
@@ -157,25 +148,26 @@ onMounted(() => {
 }
 
 .btn-submit {
-  background-color: #d88f94; /* Baby pink for purchase button */
+  background-color: #d88f94;
   color: white;
   border: none;
   border-radius: 4px;
   padding: 10px 15px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 15px; /* Space above button */
+  margin-top: 15px;
 }
 
 .btn-submit:hover {
-  background-color: #c77b84; /* Darker pink on hover */
+  background-color: #c77b84;
 }
 
 .checkout-footer {
   text-align: center;
   margin-top: 20px;
-  color: #777; /* Lighter text color */
+  color: #777;
 }
 </style>
+
 
   

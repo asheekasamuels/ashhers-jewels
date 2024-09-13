@@ -8,9 +8,7 @@
     <div class="tables-section">
       <div class="table-container">
         <h2>User Table</h2>
-        <div class="text-center">
-          <!-- <AddUser /> -->
-        </div>
+        <div class="text-center"></div>
         <div class="styled-table">
           <table>
             <thead>
@@ -90,7 +88,6 @@
 <script setup>
 import { onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
-// import AddUser from '@/components/AddUser.vue';
 import AddProduct from '@/components/AddProduct.vue';
 import EditUser from '@/components/EditUser.vue';
 import EditProduct from '@/components/EditProduct.vue';
@@ -101,12 +98,12 @@ const users = computed(() => store.state.users);
 const products = computed(() => store.state.products);
 
 onMounted(() => {
-  store.dispatch('fetchUsers'); 
-  store.dispatch('fetchProducts'); 
+  store.dispatch('fetchUsers');
+  store.dispatch('fetchProducts');
 });
 
 const delUser = (userID) => {
-  store.dispatch('deleteUser', userID); 
+  store.dispatch('deleteUser', userID);
 };
 
 const delProduct = (prodID) => {
@@ -124,7 +121,7 @@ const delProduct = (prodID) => {
 }
 
 .admin-banner {
-  background-color: #f9e5e8; /* Light pink background */
+  background-color: #f9e5e8;
   text-align: center;
   padding: 40px 20px;
   border-radius: 8px;
@@ -132,23 +129,23 @@ const delProduct = (prodID) => {
 }
 
 .admin-banner h1 {
-  color: #d88f94; /* Baby pink color */
+  color: #d88f94;
   font-size: 2.5rem;
 }
 
 .admin-banner p {
-  color: #555;  /* Lighter text color */
+  color: #555;
 }
 
 .tables-section {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Space between tables */
+  gap: 20px;
 }
 
 .table-container {
-  background-color: #fff; /* White background for table containers */
+  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -156,7 +153,7 @@ const delProduct = (prodID) => {
 
 .table-container h2 {
   margin-bottom: 20px;
-  color: #d88f94; /* Baby pink color for headings */
+  color: #d88f94;
 }
 
 .styled-table {
@@ -176,16 +173,16 @@ const delProduct = (prodID) => {
 }
 
 .styled-table th {
-  background-color: #f1f1f1; /* Light gray for table headers */
-  color: #333; /* Dark text color */
+  background-color: #f1f1f1;
+  color: #333;
 }
 
 .styled-table tbody tr:hover {
-  background-color: #f9e8e9; /* Light baby pink hover effect */
+  background-color: #f9e8e9;
 }
 
 .btn-delete {
-  background-color: #d88f94; /* Baby pink for delete buttons */
+  background-color: #d88f94;
   color: white;
   border: none;
   border-radius: 4px;
@@ -195,33 +192,31 @@ const delProduct = (prodID) => {
 }
 
 .btn-delete:hover {
-  background-color: #c77b84; /* Darker pink on hover */
+  background-color: #c77b84;
 }
 
 .img-small {
-  width: 50px; /* Default size for larger screens */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* Ensure the image covers the area without stretching */
+  width: 50px;
+  height: auto;
+  object-fit: cover;
 }
 
-/* Media query for screens 700px and below */
 @media (max-width: 700px) {
   .img-small {
-    width: 80px; /* Smaller size for medium screens */
+    width: 80px;
   }
 }
 
-/* Media query for screens 300px and below */
 @media (max-width: 300px) {
   .img-small {
-    width: 60px; /* Even smaller size for small screens */
+    width: 60px;
   }
 }
 
 .admin-footer {
   text-align: center;
   margin-top: 20px;
-  color: #777; /* Lighter text color */
+  color: #777;
 }
-
 </style>
+

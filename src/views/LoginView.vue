@@ -77,7 +77,7 @@ function login() {
 }
 
 .auth-banner {
-  background-color: #f9e5e8; /* Light pink background */
+  background-color: #f9e5e8;
   text-align: center;
   padding: 40px 20px;
   border-radius: 8px;
@@ -85,12 +85,12 @@ function login() {
 }
 
 .auth-banner h1 {
-  color: #d88f94; /* Baby pink color */
+  color: #d88f94;
   font-size: 2.5rem;
 }
 
 .auth-banner p {
-  color: #555; /* Darker gray for readability */
+  color: #555;
 }
 
 .auth-container {
@@ -98,14 +98,14 @@ function login() {
 }
 
 .form-container {
-  background-color: #fff; /* White background for form */
+  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-container h2 {
-  color: #d88f94; /* Baby pink for form heading */
+  color: #d88f94;
   margin-bottom: 15px;
 }
 
@@ -128,12 +128,12 @@ function login() {
 }
 
 .form-control:focus {
-  border-color: #d88f94; /* Change border color on focus */
-  outline: none; /* Remove default outline */
+  border-color: #d88f94;
+  outline: none;
 }
 
 .auth-btn {
-  background-color: #d88f94; /* Baby pink button */
+  background-color: #d88f94;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -144,7 +144,7 @@ function login() {
 }
 
 .auth-btn:hover {
-  background-color: #c77b86; /* Darker pink on hover */
+  background-color: #c77b86;
 }
 
 .sign-up-link {
@@ -153,7 +153,7 @@ function login() {
 }
 
 .link {
-  color: #d88f94; /* Baby pink for sign-up link */
+  color: #d88f94;
   text-decoration: underline;
 }
 
@@ -164,6 +164,6 @@ function login() {
 
 .auth-footer p {
   font-size: 0.9rem;
-  color: #666; /* Slightly lighter gray */
+  color: #666;
 }
 </style>

@@ -36,61 +36,52 @@
   padding: 60px 20px;
   font-family: "Georgia", serif;
   line-height: 1.6;
-  background-color: #f9f9f9; /* Light background for the page */
-  /* justify-content: center; */
-
+  background-color: #f9f9f9;
 }
 
 .company-content {
   max-width: 800px;
   margin: 0 auto;
-  background-color: white; /* White background for content */
+  background-color: white;
   padding: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  /* justify-content: center; */
-
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 h1,
 h2 {
-  color: #d88f94; /* Baby pink heading color */
+  color: #d88f94;
 }
 
 h1 {
-  font-size: 2.5rem; /* Larger font size for main title */
-  margin-bottom: 20px; /* Space below the title */
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 
 h2 {
-  font-size: 1.8rem; /* Subtitle font size */
-  margin-top: 30px; /* Space above each section */
+  font-size: 1.8rem;
+  margin-top: 30px;
 }
 
 p {
-  color: #333; /* Dark grey for text */
+  color: #333;
 }
 
 ul {
-  margin-top: 10px; /* Space above lists */
-  margin-left: 20px; /* Indentation for list items */
-  justify-content: center;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
 ul li {
-  margin-bottom: 10px; /* Space between list items */
-  /* justify-content: center; */
+  margin-bottom: 10px;
 }
 
-
 a {
-  color: #d88f94; /* Baby pink for links */
-  text-decoration: none; /* No underline */
+  color: #d88f94;
+  text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }
 </style>
-
-  
