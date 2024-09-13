@@ -78,21 +78,28 @@ export default createStore({
       }
     },
     async fetchProduct({ commit }, id) {
-      commit('setLoading', true);
+      console.log(id);
+      
       try {
-        const { data } = await axios.get(`${apiURL}/products/${id}`);
-        const product = data.product || null; // Adjust this based on your API response
-        if (!product) {
-          commit('setError', 'Product not found'); // Handle case where product is not found
+        console.log(id);
+        const result = await (await axios.get(`${apiURL}/products/${id}`)).data;
+        if (result) {
+          commit('setProduct', result);
+          console.log(result);
         } else {
-          commit('setProduct', product);
+          toast.error(`Can't set single product`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER,
+          });
         }
       } catch (e) {
-        handleError(e);
-      } finally {
-        commit('setLoading', false);
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
       }
-    },   
+    },
+     
     async fetchUsers({ commit }) {
       commit('setLoading', true);
       try {
@@ -240,7 +247,14 @@ export default createStore({
     },
     getUser(state) {
       return state.user;
-    }
+    },
+    getRecentProducts(state) {
+      return state.recentProducts;
+    },
+    getProduct(state) {
+      return state.product;
+    },
+
   }
 });
 

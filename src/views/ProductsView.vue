@@ -70,7 +70,7 @@
 import { useStore } from 'vuex';
 import { computed, ref, onMounted } from 'vue';
 import SpinnerComp from '@/components/SpinnerComp.vue';
-import Card from '@/components/Card.vue';
+import Card from '@/components/CardComp.vue';
 
 const store = useStore();
 const searchQuery = ref('');
