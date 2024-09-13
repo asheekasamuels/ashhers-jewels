@@ -33,12 +33,12 @@
       <router-link class="nav-link" to="/">Home</router-link>
       <router-link class="nav-link" to="/about">About</router-link>
       <router-link class="nav-link" to="/products">Products</router-link>
-      <router-link class="nav-link" to="/checkout">Checkout
+      <!-- <router-link class="nav-link" to="/checkout">Checkout
         <span v-if="cartCount" class="cart-count">{{ cartCount }}</span>
-      </router-link>
-      <router-link class="nav-link" to="/reachUs">Reach Us</router-link>
+      </router-link> -->
+      <!-- <router-link class="nav-link" to="/reachUs">Reach Us</router-link> -->
       <router-link class="nav-link" to="/admin">Admin</router-link>
-      <router-link class="nav-link" to="/login">Login</router-link>
+      <!-- <router-link class="nav-link" to="/login">Login</router-link> -->
     </div>
   </nav>
 </template>
@@ -162,17 +162,36 @@ function toggleMenu() {
   margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
+/* Media Queries for responsiveness */
+@media (max-width: 700px) {
   .nav-links {
-    display: none;
+    display: none; 
   }
 
   .mobile-menu-btn {
-    display: block;
+    display: block; 
   }
 
   .mobile-menu {
-    display: flex;
+    display: flex; 
+  }
+}
+
+@media (max-width: 300px) {
+  .navbar {
+    flex-direction: column;
+    padding: 5px 10px; 
+  }
+
+  .nav-links {
+    flex-direction: column; 
+    gap: 10px; 
+  }
+
+  .nav-icons {
+    flex-direction: column; 
+    gap: 5px; 
   }
 }
 </style>
+

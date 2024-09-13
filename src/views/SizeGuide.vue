@@ -71,6 +71,45 @@ a {
 a:hover {
     text-decoration: underline; 
 }
-</style>
 
-  
+/* Media Queries for Responsiveness */
+@media (max-width: 700px) {
+    .size-guide-page {
+        padding: 40px 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .size-guide-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 300px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    .size-guide-content {
+        padding: 15px;
+    }
+}
+</style>

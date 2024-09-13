@@ -108,4 +108,63 @@ const submitForm = () => {
 .btn-submit:hover {
   background-color: #c77b84;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 700px) {
+  .contact-page {
+    padding: 30px 15px;
+  }
+
+  .banner h1 {
+    font-size: 2rem;
+  }
+
+  .banner p {
+    font-size: 1rem;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .contact-form h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .contact-page {
+    padding: 20px 10px;
+  }
+
+  .banner {
+    padding: 15px 10px;
+  }
+
+  .banner h1 {
+    font-size: 1.5rem;
+  }
+
+  .contact-form {
+    padding: 15px;
+  }
+
+  .contact-form h2 {
+    font-size: 1.2rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+  }
+
+  .btn-submit {
+    padding: 8px 12px;
+  }
+}
 </style>

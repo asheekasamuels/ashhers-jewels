@@ -4,10 +4,12 @@
       <h1>Checkout</h1>
       <p>Complete your order and enjoy your new jewelry.</p>
     </div>
+    
     <div class="order-summary">
       <h2>Order Summary</h2>
       <div class="order-items">
         <div v-if="cart.length">
+          <!-- Loop through the grouped items in the cart -->
           <div v-for="item in groupedCart" :key="item.prodID" class="order-item">
             <img :src="item.prodUrl" class="item-image" :alt="item.prodName" />
             <div class="item-details">
@@ -16,14 +18,19 @@
               <p>Quantity: {{ item.quantity }}</p>
             </div>
           </div>
+
+          <!-- Display total amount -->
           <div class="order-total">
             <h3>Total: R{{ totalAmount }}</h3>
           </div>
+          
+          <!-- Purchase button -->
           <button class="btn-submit" @click="handlePurchase">Purchase</button>
         </div>
         <p v-else>Your cart is empty.</p>
       </div>
     </div>
+    
     <div class="checkout-footer">
       <p>Thank you for choosing our jewelry. We hope you enjoy your purchase!</p>
     </div>
@@ -33,33 +40,41 @@
 <script setup>
 import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
-import { toast } from 'vue3-toastify';
+import { toast } from 'vue3-toastify'; // Toast for notifications
 
 const store = useStore();
+
+// Access cart from Vuex store
 const cart = computed(() => store.state.cart);
+
+// Group items in the cart by product ID
 const groupedCart = computed(() => {
   const grouped = cart.value.reduce((acc, item) => {
     const found = acc.find(i => i.prodID === item.prodID);
     if (found) {
-      found.itemCount += 1;
+      found.quantity += item.quantity; // Increase quantity if already exists
     } else {
-      acc.push({ ...item, itemCount: 1 });
+      acc.push({ ...item }); // Add new item to the cart group
     }
     return acc;
   }, []);
   return grouped;
 });
+
+// Calculate total amount
 const totalAmount = computed(() => {
-  return groupedCart.value.reduce((sum, item) => sum + (item.amount * item.itemCount), 0);
+  return groupedCart.value.reduce((sum, item) => sum + (item.amount * item.quantity), 0);
 });
+
+// Handle purchase action
 const handlePurchase = async () => {
   try {
-    await store.dispatch('purchaseCart');
+    await store.dispatch('purchaseCart'); // Purchase action in Vuex
     toast.success('Successfully paid!', {
       autoClose: 2000,
       position: toast.POSITION.BOTTOM_CENTER,
     });
-    store.commit('setCart', []);
+    store.commit('setCart', []); // Clear cart after successful purchase
   } catch (error) {
     toast.error(`Payment failed: ${error.message}`, {
       autoClose: 2000,
@@ -67,8 +82,10 @@ const handlePurchase = async () => {
     });
   }
 };
+
+// Fetch the cart on component mount
 onMounted(() => {
-  store.dispatch('fetchCart');
+  store.dispatch('fetchCart'); // Fetch cart items when component is mounted
 });
 </script>
 

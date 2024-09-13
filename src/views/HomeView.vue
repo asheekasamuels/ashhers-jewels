@@ -1,6 +1,5 @@
 <template>
   <div class="home-page">
-    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
         <div class="overlay"></div>
@@ -13,7 +12,6 @@
       </div>
     </section>
 
-    <!-- Product Categories Carousel -->
     <section class="product-categories">
       <h2>Discover a World of Jewellery</h2>
       <div class="carousel-container">
@@ -27,7 +25,6 @@
       </div>
     </section>
 
-    <!-- Promotional Section -->
     <section class="promo-section">
       <div class="promo-item">
         <h3>Register to Ashhers Jewels Club</h3>
@@ -46,7 +43,6 @@
       </div>
     </section>
 
-    <!-- Newsletter Subscription -->
     <section class="newsletter-section">
       <h3>Stay in the Loop</h3>
       <p>Be the first to hear about new arrivals, exclusive promotions, and special events.</p>
@@ -56,7 +52,6 @@
       </form>
     </section>
 
-    <!-- Navigation Links -->
     <section class="navigation-links">
       <a href="/about" class="link-button">About Us</a>
       <a href="/products" class="link-button">All Products</a>
@@ -119,7 +114,6 @@ function prevSlide() {
 </script>
 
 <style scoped>
-/* Hero Section */
 .hero {
   position: relative;
   height: 80vh;
@@ -163,7 +157,6 @@ function prevSlide() {
   text-decoration: none;
 }
 
-/* Carousel */
 .carousel-container {
   position: relative;
   width: 70%; 
@@ -177,7 +170,7 @@ function prevSlide() {
   width: calc(100% * (100 / 50));
   padding: 30px;
 }
-/* Carousel Controls */
+
 .carousel-control {
   background-color: #d88f94; 
   color: white; 
@@ -202,13 +195,11 @@ function prevSlide() {
   right: 10px; 
 }
 
-/* Hover effect for carousel controls */
 .carousel-control:hover {
   background-color: #c77b86; 
   transform: translateY(-50%) scale(1.1); 
 }
 
-/* Responsive adjustments */
 @media (max-width: 700px) {
   .carousel-control {
     width: 30px; 
@@ -230,7 +221,6 @@ function prevSlide() {
   margin: 0 auto;
 }
 
-/* Promotional Section */
 .promo-section {
   display: flex;
   justify-content: space-around;
@@ -268,7 +258,6 @@ function prevSlide() {
   color: #c77b86; 
 }
 
-/* Newsletter Section */
 .newsletter-section {
   padding: 40px;
   text-align: center;
@@ -316,7 +305,6 @@ function prevSlide() {
   background-color: #c77b86; 
 }
 
-/* Navigation Links */
 .navigation-links {
   padding: 40px;
   display: flex;
@@ -332,4 +320,54 @@ function prevSlide() {
   border-radius: 4px;
   font-size: 1.1rem;
 }
+
+@media (max-width: 600px) {
+  .promo-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .promo-item {
+    margin-bottom: 20px;
+  }
+
+  .newsletter-input {
+    width: 100%;
+  }
+
+  .newsletter-submit {
+    width: auto;
+  }
+
+  .link-button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+  }
+
+  .carousel {
+    padding: 15px;
+  }
+
+  .category {
+    width: 100%;
+  }
+
+  .category-image {
+    width: 100%;
+  }
+}
 </style>
+

@@ -87,4 +87,46 @@ a:hover {
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 700px) {
+    .store-locator-page {
+        padding: 40px 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .store-locator-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 300px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    .store-locator-content {
+        padding: 15px;
+    }
+}
 </style>
+

@@ -84,4 +84,29 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 700px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .company-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 300px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}
 </style>
+

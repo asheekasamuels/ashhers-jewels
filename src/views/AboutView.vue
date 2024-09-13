@@ -8,23 +8,13 @@
     <section class="story">
       <h2>Our Story</h2>
       <p>
-        At Ashhers Jewels, we are dedicated to creating exquisite jewelry that
-        transcends time. Our journey began with a simple yet profound vision: to
-        offer jewelry that captures both the essence of elegance and the spirit
-        of individuality. Inspired by timeless designs and contemporary trends,
-        we strive to craft pieces that not only adorn but also empower.
+        At Ashhers Jewels, we are dedicated to creating exquisite jewelry that transcends time. Our journey began with a simple yet profound vision: to offer jewelry that captures both the essence of elegance and the spirit of individuality. Inspired by timeless designs and contemporary trends, we strive to craft pieces that not only adorn but also empower.
       </p>
       <p>
-        Our commitment to quality and craftsmanship drives us to select the
-        finest materials and employ skilled artisans who breathe life into our
-        designs. Whether it's a sparkling charm, a delicate necklace, or a
-        statement ring, each piece is a testament to our dedication to beauty
-        and excellence.
+        Our commitment to quality and craftsmanship drives us to select the finest materials and employ skilled artisans who breathe life into our designs. Whether it's a sparkling charm, a delicate necklace, or a statement ring, each piece is a testament to our dedication to beauty and excellence.
       </p>
       <p>
-        Ashhers Jewels is more than a name; it's a promise of luxury,
-        craftsmanship, and style. Join us in celebrating life's precious moments
-        with jewelry that tells your unique story.
+        Ashhers Jewels is more than a name; it's a promise of luxury, craftsmanship, and style. Join us in celebrating life's precious moments with jewelry that tells your unique story.
       </p>
     </section>
 
@@ -40,17 +30,10 @@
         <div class="founder-info">
           <h3>Asheeka Samuels</h3>
           <p>
-            Asheeka Samuels is the visionary behind Ashhers Jewels. With an
-            extensive background in jewelry design and a passion for exceptional
-            craftsmanship, Asheeka has meticulously curated each
-            collection to reflect elegance and individuality. She brings a deep
-            understanding of design aesthetics and a commitment to creating
-            timeless pieces that resonate with our customers.
+            Asheeka Samuels is the visionary behind Ashhers Jewels. With an extensive background in jewelry design and a passion for exceptional craftsmanship, Asheeka has meticulously curated each collection to reflect elegance and individuality. She brings a deep understanding of design aesthetics and a commitment to creating timeless pieces that resonate with our customers.
           </p>
           <p>
-            Driven by a love for beautiful things and a dedication to quality,
-            Asheeka aims to make Ashhers Jewels a symbol of elegance and a
-            go-to destination for those who appreciate the finer things in life.
+            Driven by a love for beautiful things and a dedication to quality, Asheeka aims to make Ashhers Jewels a symbol of elegance and a go-to destination for those who appreciate the finer things in life.
           </p>
         </div>
       </div>
@@ -131,4 +114,52 @@ export default {
 .founder-info {
   flex: 1;
 }
+
+@media (max-width: 700px) {
+  .about-page {
+    padding: 20px 10px;
+  }
+
+  .about-banner h1 {
+    font-size: 2rem;
+  }
+
+  .about-banner p {
+    font-size: 1rem;
+  }
+
+  .story h2, .founders h2 {
+    font-size: 1.5rem;
+  }
+
+  .founder-profile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .founder-photo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 300px) {
+  .about-page {
+    padding: 15px 5px;
+  }
+
+  .about-banner h1 {
+    font-size: 1.5rem;
+  }
+
+  .about-banner p {
+    font-size: 0.9rem;
+  }
+
+  .story h2, .founders h2 {
+    font-size: 1.25rem;
+  }
+}
 </style>
+

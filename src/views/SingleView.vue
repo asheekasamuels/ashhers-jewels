@@ -3,9 +3,13 @@
     <router-link to="/products">
       <button class="back-button">← Go Back</button>
     </router-link>
-    
+
+    <SpinnerComp v-if="loading" class="loading-spinner" />
+
+    <div v-if="error" class="error-message">{{ error }}</div>
+
     <div v-if="product" class="product-details">
-      <h1 class="product-title">{{ product?.prodName }}</h1>
+      <h1 class="product-title">{{ product.prodName }}</h1>
       <div class="product-card-container">
         <img :src="product.prodURL" :alt="product.prodName" class="product-image" />
         <div class="card-content">
@@ -18,22 +22,19 @@
         </div>
       </div>
     </div>
-    
-    <SpinnerComp v-else class="loading-spinner" />
   </div>
 </template>
 
 <script>
 import SpinnerComp from '@/components/SpinnerComp.vue';
+import { mapState } from 'vuex';
 
 export default {
   components: {
     SpinnerComp
   },
   computed: {
-    product() {
-      return this.$store.state.product;
-    }
+    ...mapState(['product', 'loading', 'error']) // Map loading and error from the store
   },
   mounted() {
     this.$store.dispatch("fetchProduct", this.$route.params.id);
@@ -121,5 +122,54 @@ export default {
 
 .loading-spinner {
   margin-top: 40px; 
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 700px) {
+  .product-title {
+    font-size: 2rem;
+  }
+
+  .product-price {
+    font-size: 1.25rem;
+  }
+
+  .card-info {
+    font-size: 0.9rem;
+  }
+
+  .back-button,
+  .add-to-cart-btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .product-details {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 300px) {
+  .product-title {
+    font-size: 1.5rem;
+  }
+
+  .product-price {
+    font-size: 1rem;
+  }
+
+  .card-info {
+    font-size: 0.8rem;
+  }
+
+  .back-button,
+  .add-to-cart-btn {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .product-details {
+    padding: 15px;
+  }
 }
 </style>

@@ -85,4 +85,56 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 700px) {
+  .loyalty-card-page {
+    padding: 30px 15px;
+  }
+
+  .loyalty-content {
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  ul {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .loyalty-card-page {
+    padding: 20px 10px;
+  }
+
+  .loyalty-content {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  ul {
+    margin-left: 5px;
+  }
+}
 </style>

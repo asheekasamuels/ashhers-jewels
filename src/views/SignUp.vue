@@ -226,4 +226,62 @@ function register() {
   color: #d88f94;
   text-decoration: underline;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 700px) {
+  .auth-page {
+    padding: 30px 15px;
+  }
+
+  .auth-banner h1 {
+    font-size: 2rem;
+  }
+
+  .auth-banner p {
+    font-size: 1rem;
+  }
+
+  .form-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-group input {
+    font-size: 0.9rem;
+  }
+
+  .auth-btn {
+    font-size: 0.9rem;
+  }
+
+  .auth-footer p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .auth-page {
+    padding: 20px 10px;
+  }
+
+  .auth-banner h1 {
+    font-size: 1.5rem;
+  }
+
+  .auth-banner p,
+  .form-container h2 {
+    font-size: 0.8rem;
+  }
+
+  .form-group input {
+    font-size: 0.8rem;
+  }
+
+  .auth-btn {
+    font-size: 0.8rem;
+  }
+
+  .auth-footer p {
+    font-size: 0.7rem;
+  }
+}
 </style>

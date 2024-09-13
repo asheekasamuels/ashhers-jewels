@@ -219,4 +219,3 @@ const delProduct = (prodID) => {
   color: #777;
 }
 </style>
-

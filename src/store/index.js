@@ -69,7 +69,7 @@ export default createStore({
       commit('setLoading', true);
       try {
         const { data } = await axios.get(`${apiURL}/products`);
-        const products = data.results || []; // Use fallback to prevent errors
+        const products = data.results || []; 
         commit('setProducts', products);
       } catch (e) {
         handleError(e);
@@ -81,19 +81,23 @@ export default createStore({
       commit('setLoading', true);
       try {
         const { data } = await axios.get(`${apiURL}/products/${id}`);
-        const product = data.results?.[0] || null; // Safely access product
-        commit('setProduct', product);
+        const product = data.product || null; // Adjust this based on your API response
+        if (!product) {
+          commit('setError', 'Product not found'); // Handle case where product is not found
+        } else {
+          commit('setProduct', product);
+        }
       } catch (e) {
         handleError(e);
       } finally {
         commit('setLoading', false);
       }
-    },
+    },   
     async fetchUsers({ commit }) {
       commit('setLoading', true);
       try {
         const { data } = await axios.get(`${apiURL}/users`);
-        const users = data.results || []; // Use fallback to prevent errors
+        const users = data.results || []; 
         commit('setUsers', users);
       } catch (e) {
         handleError(e);

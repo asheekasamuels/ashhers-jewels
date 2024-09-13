@@ -54,4 +54,39 @@ h3 {
 p {
     color: #333;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 700px) {
+    .container {
+        padding: 30px 15px;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 300px) {
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+}
 </style>

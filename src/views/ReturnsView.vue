@@ -72,4 +72,54 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 700px) {
+    .returns-page {
+        padding: 30px 15px;
+    }
+
+    .returns-content {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    ol li {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 300px) {
+    .returns-page {
+        padding: 20px 10px;
+    }
+
+    .returns-content {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    p,
+    ol li {
+        font-size: 0.9rem;
+    }
+}
 </style>

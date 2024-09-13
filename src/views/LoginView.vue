@@ -6,7 +6,6 @@
     </div>
 
     <div class="auth-container">
-      <!-- Login Form -->
       <div class="form-container">
         <h2>Login</h2>
         <form class="form" @submit.prevent="login">
@@ -35,7 +34,6 @@
           <button type="submit" class="auth-btn">Login</button>
         </form>
 
-        <!-- Sign Up Link -->
         <p class="sign-up-link">
           Don't have an account?
           <router-link to="/signup" class="link">sign up here</router-link>
@@ -165,5 +163,65 @@ function login() {
 .auth-footer p {
   font-size: 0.9rem;
   color: #666;
+}
+
+@media (max-width: 700px) {
+  .auth-page {
+    padding: 30px 15px;
+  }
+
+  .auth-banner h1 {
+    font-size: 2rem;
+  }
+
+  .auth-banner p {
+    font-size: 1rem;
+  }
+
+  .form-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-control {
+    padding: 8px;
+  }
+
+  .auth-btn {
+    font-size: 0.9rem;
+  }
+
+  .auth-footer p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .auth-page {
+    padding: 20px 10px;
+  }
+
+  .auth-banner h1 {
+    font-size: 1.8rem;
+  }
+
+  .auth-banner p {
+    font-size: 0.9rem;
+  }
+
+  .form-container h2 {
+    font-size: 1.3rem;
+  }
+
+  .form-control {
+    padding: 6px;
+  }
+
+  .auth-btn {
+    font-size: 0.8rem;
+  }
+
+  .auth-footer p {
+    font-size: 0.7rem;
+  }
 }
 </style>

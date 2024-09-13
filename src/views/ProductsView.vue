@@ -7,7 +7,6 @@
     <div class="container">
       <div class="options">
         <div class="search-category">
-          <!-- Search Bar and Category Dropdown -->
           <input
             type="text"
             v-model="searchQuery"
@@ -23,14 +22,12 @@
           </select>
         </div>
 
-        <!-- Sort Buttons on the Right -->
         <div class="sort-buttons">
           <button @click="sortByPrice" class="sort-btn">Sort by Price</button>
           <button @click="sortByName" class="sort-btn">Sort by Name</button>
         </div>
       </div>
 
-      <!-- Product Grid -->
       <div class="products-grid" v-if="filteredProducts.length">
         <Card
           v-for="product in filteredProducts"
@@ -57,7 +54,6 @@
         </Card>
       </div>
 
-      <!-- No Products Found or Loading Spinner -->
       <div v-else>
         <SpinnerComp v-if="loading" />
         <p v-if="!loading && !filteredProducts.length">No products found</p>
@@ -73,14 +69,12 @@
 <script setup>
 import { useStore } from 'vuex';
 import { computed, ref, onMounted } from 'vue';
-// import { useRouter } from 'vue-router';
 import SpinnerComp from '@/components/SpinnerComp.vue';
 import Card from '@/components/Card.vue';
 
 const store = useStore();
 const searchQuery = ref('');
 const selectedCategory = ref('All'); 
-// const router = useRouter();
 
 onMounted(() => {
   store.dispatch('fetchProducts');
@@ -104,14 +98,12 @@ const addToCart = (product) => {
 const filteredProducts = computed(() => {
   let result = products.value;
 
-  // Filter by selected category
   if (selectedCategory.value !== 'All') {
     result = result.filter(product =>
       product.category.toLowerCase() === selectedCategory.value.toLowerCase()
     );
   }
 
-  // Filter by search query
   if (searchQuery.value) {
     result = result.filter(product =>
       product.prodName.toLowerCase().includes(searchQuery.value.toLowerCase())
@@ -333,3 +325,4 @@ const filteredProducts = computed(() => {
   }
 }
 </style>
+
