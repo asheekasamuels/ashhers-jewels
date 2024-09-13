@@ -33,54 +33,58 @@ export default createStore({
     setError(state, value) {
       state.error = value;
     },
-    setUsers(state, value) {
-      state.users = value;
+    setUsers(state, users) {
+      state.users = users;
     },
-    setUser(state, value) {
-      state.user = value;
+    setUser(state, user) {
+      state.user = user;
     },
-    setProducts(state, value) {
-      state.products = value;
+    setProducts(state, products) {
+      state.products = products;
     },
-    setRecentProducts(state, value) {
-      state.recentProducts = value;
+    setRecentProducts(state, recentProducts) {
+      state.recentProducts = recentProducts;
     },
-    setProduct(state, value) {
-      state.product = value;
+    setProduct(state, product) {
+      state.product = product;
     },
-    setCart(state, value) {
-      state.cart = value;
+    setCart(state, cart) {
+      state.cart = cart;
     },
     ADD_TO_CART(state, product) {
       state.cart.push(product);
     },
-    removeFromCart(state, prodID) {
+    REMOVE_FROM_CART(state, prodID) {
       state.cart = state.cart.filter(item => item.prodID !== prodID);
     },
-    sortByPrice(state) {
+    SORT_BY_PRICE(state) {
       state.products.sort((a, b) => a.amount - b.amount);
     },
-    sortByName(state) {
+    SORT_BY_NAME(state) {
       state.products.sort((a, b) => a.prodName.localeCompare(b.prodName));
-    }
+    },
   },
   actions: {
-    async fetchProducts({ commit }) { 
+    async fetchProducts({ commit }) {
       commit('setLoading', true);
       try {
-        const response = await axios.get(`${apiURL}/products`);
-        const { results } = response.data;
-        if (Array.isArray(results)) {
-          commit('setProducts', results);
-        } else {
-          throw new Error('Invalid products data format');
-        }
+        const { data } = await axios.get(`${apiURL}/products`);
+        const products = data.results || []; // Use fallback to prevent errors
+        commit('setProducts', products);
       } catch (e) {
-        toast.error(e.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', e.message);
+        handleError(e);
+      } finally {
+        commit('setLoading', false);
+      }
+    },
+    async fetchProduct({ commit }, id) {
+      commit('setLoading', true);
+      try {
+        const { data } = await axios.get(`${apiURL}/products/${id}`);
+        const product = data.results?.[0] || null; // Safely access product
+        commit('setProduct', product);
+      } catch (e) {
+        handleError(e);
       } finally {
         commit('setLoading', false);
       }
@@ -88,19 +92,11 @@ export default createStore({
     async fetchUsers({ commit }) {
       commit('setLoading', true);
       try {
-        const response = await axios.get(`${apiURL}/users`);
-        const { results } = response.data;
-        if (Array.isArray(results)) {
-          commit('setUsers', results);
-        } else {
-          throw new Error('Invalid users data format');
-        }
+        const { data } = await axios.get(`${apiURL}/users`);
+        const users = data.results || []; // Use fallback to prevent errors
+        commit('setUsers', users);
       } catch (e) {
-        toast.error(e.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', e.message);
+        handleError(e);
       } finally {
         commit('setLoading', false);
       }
@@ -108,61 +104,43 @@ export default createStore({
     async fetchCart({ commit }) {
       commit('setLoading', true);
       try {
-        const response = await axios.get(`${apiURL}/cart`);
-        const { results } = response.data;
-        if (Array.isArray(results)) {
-          commit('setCart', results);
-        } else {
-          throw new Error('Invalid cart data format');
-        }
+        const { data } = await axios.get(`${apiURL}/cart`);
+        const cartItems = data.results || []; // Use fallback to prevent errors
+        commit('setCart', cartItems);
       } catch (e) {
-        toast.error(e.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', e.message);
+        handleError(e);
       } finally {
         commit('setLoading', false);
       }
     },
     sortByPrice({ commit }) {
-      commit('sortByPrice');
+      commit('SORT_BY_PRICE');
     },
     addToCart({ commit }, product) {
       commit('ADD_TO_CART', product);
     },
     removeFromCart({ commit }, prodID) {
-      commit('removeFromCart', prodID);
+      commit('REMOVE_FROM_CART', prodID);
     },
-    
-    async deleteUser({ commit, state }, userID) { 
+    async deleteUser({ commit, state }, userID) {
       try {
         await axios.delete(`${apiURL}/users/${userID}`);
         commit('setUsers', state.users.filter(user => user.userID !== userID));
       } catch (e) {
-        toast.error(e.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', e.message);
+        handleError(e);
       }
     },
     async updateUser({ commit }, payload) {
       try {
-        const response = await axios.put(`${apiURL}/users/${payload.userID}`, payload);
-        commit('setUser', response.data); // Update the user in the state
+        const { data } = await axios.put(`${apiURL}/users/${payload.userID}`, payload);
+        commit('setUser', data); // Update the user in the state
         toast.success('User updated successfully', {
           autoClose: 2000,
           position: toast.POSITION.BOTTOM_CENTER,
         });
-        return response.data; // Return the updated user
+        return data; // Return the updated user
       } catch (error) {
-        toast.error(error.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', error.message); // Set the error in the state
-        throw error; // Re-throw the error to be caught in your component
+        handleError(error);
       }
     },
     async deleteProduct({ commit, state }, prodID) {
@@ -170,18 +148,14 @@ export default createStore({
         await axios.delete(`${apiURL}/products/${prodID}`);
         commit('setProducts', state.products.filter(product => product.productID !== prodID));
       } catch (e) {
-        toast.error(e.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', e.message);
+        handleError(e);
       }
     },
-    async registerUser(context, payload){
+    async registerUser(context, payload) {
       try {
-        const { token, msg } = await (await axios.post(`${apiURL}/users/register`, payload)).data;
-        if (token) {
-          console.log(msg);
+        const { data } = await axios.post(`${apiURL}/users/register`, payload);
+        const { token, msg } = data; // Destructure from data
+        if (token, msg) {
           toast.success(`Added new user. Thank you😎`, {
             autoClose: 2000,
             position: toast.POSITION.BOTTOM_CENTER,
@@ -189,17 +163,14 @@ export default createStore({
           router.push({ name: 'products' });
         }
       } catch (error) {
-        toast.error(error.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
+        handleError(error);
       }
     },
     async login(context, payload) {
       try {
-        const { token, result, msg } = await (await axios.post(`${apiURL}/users/login`, payload)).data;
+        const { data } = await axios.post(`${apiURL}/users/login`, payload);
+        const { result, msg } = data; // Destructure from data
         if (result) {
-          console.log(token);
           toast.success(`${msg}`, {
             autoClose: 2000,
             position: toast.POSITION.BOTTOM_CENTER,
@@ -207,60 +178,31 @@ export default createStore({
           router.push({ name: 'products' });
         }
       } catch (error) {
-        toast.error(error.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
+        handleError(error);
       }
     },
     async addProduct({ commit, state }, payload) {
       try {
-        const response = await axios.post(`${apiURL}/products`, payload);
-        commit('setProducts', [...state.products, response.data]);
+        const { data } = await axios.post(`${apiURL}/products`, payload);
+        commit('setProducts', [...state.products, data]);
         toast.success('Product added successfully', {
           autoClose: 2000,
           position: toast.POSITION.BOTTOM_CENTER,
         });
       } catch (error) {
-        toast.error(error.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', error.message);
+        handleError(error);
       }
     },
     async editProduct({ commit, state }, payload) {
       try {
-        const response = await axios.put(`${apiURL}/products/${payload.productID}`, payload);
-        commit('setProducts', state.products.map(product => (product.productID === payload.productID ? response.data : product)));
+        const { data } = await axios.put(`${apiURL}/products/${payload.productID}`, payload);
+        commit('setProducts', state.products.map(product => (product.productID === payload.productID ? data : product)));
         toast.success('Product updated successfully', {
           autoClose: 2000,
           position: toast.POSITION.BOTTOM_CENTER,
         });
       } catch (error) {
-        toast.error(error.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', error.message);
-      }
-    },
-    async editUser({ commit }, payload) {
-      try {
-        const response = await axios.put(`${apiURL}/users/${payload.userID}`, payload);
-        commit('setUser', response.data); 
-        toast.success('User updated successfully', {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        return response.data; 
-      } catch (error) {
-        toast.error(error.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', error.message); 
-        throw error; 
+        handleError(error);
       }
     },
     async deleteCart({ commit }) {
@@ -272,11 +214,7 @@ export default createStore({
           position: toast.POSITION.BOTTOM_CENTER,
         });
       } catch (error) {
-        toast.error(error.message, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-        commit('setError', error.message);
+        handleError(error);
       }
     }
   },
@@ -301,3 +239,12 @@ export default createStore({
     }
   }
 });
+
+// Helper function for error handling
+function handleError(error) {
+  const message = error.response?.data?.message || error.message; // Use the error message from the server if available
+  toast.error(message, {
+    autoClose: 2000,
+    position: toast.POSITION.BOTTOM_CENTER,
+  });
+}

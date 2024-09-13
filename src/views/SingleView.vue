@@ -1,45 +1,43 @@
 <template>
-  <div class="product-page" v-if="product">
-    <div class="product-details">
-      <h1>{{ product[0].prodName }}</h1>
-      <img
-        :src="product[0].prodUrl"
-        :alt="product[0].prodName"
-        class="product-image"
-      />
-      <p class="product-price">Price: R{{ product[0].amount }}</p>
-      <p class="product-description">{{ product[0].desc }}</p>
-      <button @click="addToCart(product[0].prodID)" class="add-to-cart-btn">
-        Add To Cart
-      </button>
+  <div class="product-page">
+    <router-link to="/products">
+      <button class="back-button">← Go Back</button>
+    </router-link>
+    
+    <div v-if="product" class="product-details">
+      <h1 class="product-title">{{ product?.prodName }}</h1>
+      <div class="product-card-container">
+        <img :src="product.prodURL" :alt="product.prodName" class="product-image" />
+        <div class="card-content">
+          <p class="card-info">Description: <span>{{ product.prodDesc }}</span></p>
+          <p class="card-info">Category: <span>{{ product.category }}</span></p>
+          <p class="product-price">Price: <span>R{{ product.amount }}</span></p>
+          <div class="button-container">
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div v-else class="loading-container">
-    <SpinnerComp />
+    
+    <SpinnerComp v-else class="loading-spinner" />
   </div>
 </template>
 
-<script setup>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
-import { useRoute } from 'vue-router';
+<script>
 import SpinnerComp from '@/components/SpinnerComp.vue';
 
-const store = useStore();
-const route = useRoute();
-
-const product = computed(() => store.state.product);
-
-store.dispatch('getSingleProduct', route.params.id);
-store.dispatch('getProducts');
-
-function addToCart(prodID) {
-  const user = store.state.user;
-  if (user.userID) {
-    store.dispatch('addToCart', {
-      userID: user.userID,
-      prodID
-    });
+export default {
+  components: {
+    SpinnerComp
+  },
+  computed: {
+    product() {
+      return this.$store.state.product;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("fetchProduct", this.$route.params.id);
+    window.scrollTo(0, 0); 
   }
 }
 </script>
@@ -54,6 +52,21 @@ function addToCart(prodID) {
   color: #333;
 }
 
+.back-button {
+  background-color: #d88f94; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px; 
+}
+
+.back-button:hover {
+  background-color: #c77b86; 
+}
+
 .product-details {
   background-color: #fff; 
   padding: 30px;
@@ -64,7 +77,7 @@ function addToCart(prodID) {
   width: 100%;
 }
 
-.product-details h1 {
+.product-title {
   color: #d88f94; 
   font-size: 2.5rem;
   margin-bottom: 20px;
@@ -85,10 +98,10 @@ function addToCart(prodID) {
   font-weight: bold;
 }
 
-.product-description {
+.card-info {
   font-size: 1rem;
   color: #555;
-  margin-bottom: 30px;
+  margin-bottom: 10px; 
 }
 
 .add-to-cart-btn {
@@ -106,9 +119,7 @@ function addToCart(prodID) {
   background-color: #c77b86; 
 }
 
-.loading-container {
-  display: flex;
-  justify-content: center;
-  padding: 40px;
+.loading-spinner {
+  margin-top: 40px; 
 }
 </style>
